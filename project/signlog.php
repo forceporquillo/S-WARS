@@ -2,11 +2,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>SignUp and Login</title>
+    <title>Login/SignUp</title>
     <link rel="stylesheet" type="text/css" href="styles1.css">
 </head>
 <body>
-<div class="container" id="container">
+<div class="sign">
+    <div class="container" id="container">
     <div class="form-container sign-up-container">
         <form method="post" action="">
             <h1>Create Account</h1>
@@ -40,7 +41,7 @@
         <div class="overlay">
             <div class="overlay-panel overlay-left">
                 <h1>Welcome Back!</h1>
-                <p>To keep connected with us please login with your personal info</p>
+                <p>Log in to continue to your account.</p>
                 <button class="ghost" id="signIn">Sign In</button>
             </div>
             <div class="overlay-panel overlay-right">
@@ -49,6 +50,7 @@
                 <p>Not a member yet? Create your account!</p>
                 <button class="ghost" id="signUp">Sign Up</button>
             </div>
+        </div>
         </div>
     </div>
 </div>
