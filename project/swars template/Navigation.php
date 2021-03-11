@@ -122,7 +122,7 @@
                                 </div>
                             </div>
                         </section>
-                    </div>
+                    </div>                              <!-- RESERVATION -->
                     <div style="background-image: url('assets/images/background/samgyup2.jpg');
                                 background-attachment:fixed;
                                 background-position:center;
@@ -136,15 +136,15 @@
                                                 <p class="subtitle">You can call us directly at <span class="text-default"> 123-4567</span></p>
                                             </div>
                                             <div class="swin-sc swin-sc-contact-form dark mtl">
-                                                <form>
+                                                <form method="post" action="book.php">          <!-- Start of Reservation -->
                                                     <div class="form-group">
                                                         <div class="input-group">
                                                             <div class="input-group-addon"><i class="fa fa-user"></i></div>
-                                                            <input type="text" placeholder="Username" class="form-control">
+                                                            <input type="text" name="username" placeholder="Username" class="form-control">
                                                         </div>
                                                         <div class="input-group">
                                                             <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
-                                                            <input type="text" placeholder="Email" class="form-control">
+                                                            <input type="text" name="email" placeholder="Email" class="form-control">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
@@ -152,12 +152,12 @@
                                                             <div class="input-group-addon">
                                                                 <div class="fa fa-phone"></div>
                                                             </div>
-                                                            <input type="text" placeholder="Phone" class="form-control">
+                                                            <input type="number" placeholder="Phone" name="phone" class="form-control">
                                                         </div>
                                                         <div class="input-group">
                                                             <div class="input-group-addon"><i class="fa fa-male"></i></div>
-                                                            <select type="text" placeholder="People" class="form-control">
-                                                                <option>1 person</option>
+                                                            <select type="text" placeholder="People" name="people" class="form-control">
+                                                                <option>1 Person</option>
                                                                 <option>2 People</option>
                                                                 <option>3 People</option>
                                                                 <option>4 People</option>
@@ -168,13 +168,13 @@
                                                     <div class="form-group">
                                                         <div class="input-group">
                                                             <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-                                                            <input type="text" placeholder="Date" class="form-control datepicker">
+                                                            <input type="text" name="date" placeholder="Date" class="form-control datepicker">
                                                         </div>
                                                         <div class="input-group">
                                                             <div class="input-group-addon">
                                                                 <div class="fa fa-clock-o"></div>
                                                             </div>
-                                                            <select type="text" placeholder="Time" class="form-control">
+                                                            <select type="text" placeholder="Time" name="time" class="form-control">
                                                                 <option>9 AM - 12 PM</option>
                                                                 <option>12 PM - 3 PM</option>
                                                                 <option>3 PM - 6 PM</option>
@@ -186,9 +186,9 @@
                                                         <textarea class="form-control"></textarea>
                                                     </div>
                                                     <div class="form-group">
-                                                        <div class="swin-btn-wrap center"><a href="javascript:void(0)" class="swin-btn center form-submit"> <span>Book Table</span></a></div>
+                                                        <div class="swin-btn-wrap center"><a href="book.php" > <span><button class="swin-btn center form-submit" type="submit" name="book_user">Book Table</button></span></a></div>
                                                     </div>
-                                                </form>
+                                                </form>             <!-- End of Reservation -->
                                             </div>
                                         </div>
                                     </div>
