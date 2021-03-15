@@ -136,15 +136,15 @@
                                                 <p class="subtitle">You can call us directly at <span class="text-default"> 123-4567</span></p>
                                             </div>
                                             <div class="swin-sc swin-sc-contact-form dark mtl">
-                                                <form method="post" action="book.php">          <!-- Start of Reservation -->
+                                                <form method="post" action="calendar.php">          <!-- Start of Reservation -->
                                                     <div class="form-group">
                                                         <div class="input-group">
                                                             <div class="input-group-addon"><i class="fa fa-user"></i></div>
-                                                            <input type="textbox" name="username" value=<?php echo $_SESSION['username']?> readonly="readonly" class="form-control">
+                                                            <input type="textbox" name="username" value=<?php echo $_SESSION['username']?> readonly class="form-control">
                                                         </div>
                                                         <div class="input-group">
                                                             <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
-                                                            <input type="text" name="email" placeholder="Email" class="form-control">
+                                                            <input type="text" name="email" placeholder="Email" required="" class="form-control">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
@@ -152,7 +152,7 @@
                                                             <div class="input-group-addon">
                                                                 <div class="fa fa-phone"></div>
                                                             </div>
-                                                            <input type="number" placeholder="Phone" name="phone" class="form-control">
+                                                            <input type="number" placeholder="Phone" required="" name="phone" class="form-control">
                                                         </div>
                                                         <div class="input-group">
                                                             <div class="input-group-addon"><i class="fa fa-male"></i></div>
@@ -180,27 +180,10 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <div class="input-group">
-                                                            <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-                                                            <input type="text" name="date" placeholder="Date" class="form-control datepicker">
-                                                        </div>
-                                                        <div class="input-group">
-                                                            <div class="input-group-addon">
-                                                                <div class="fa fa-clock-o"></div>
-                                                            </div>
-                                                            <select type="text" placeholder="Time" name="time" class="form-control">
-                                                                <option>9 AM - 12 PM</option>
-                                                                <option>12 PM - 3 PM</option>
-                                                                <option>3 PM - 6 PM</option>
-                                                                <option>6 PM - 9 PM</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
                                                         <textarea class="form-control"></textarea>
                                                     </div>
                                                     <div class="form-group">
-                                                        <div class="swin-btn-wrap center"><a href="book.php" > <span><button class="swin-btn center form-submit" type="submit" name="book_user">Book Table</button></span></a></div>
+                                                        <div class="swin-btn-wrap center"><a href="calendar.php" > <span><button class="swin-btn center form-submit" type="submit" name="book_user">Book Table</button></span></a></div>
                                                     </div>
                                                 </form>             <!-- End of Reservation -->
                                             </div>
