@@ -4,6 +4,18 @@ session_start();
 $username = "";
 $email    = "";
 $errors = array();
+/*          INSERT THIS IN SQL QUERY WHEN CREATING TABLES FOR DATABASE(swars)
+
+CREATE TABLE `users` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `username` date NOT NULL,
+ `email` varchar(255) NOT NULL,
+ `password` VARCHAR(255) NOT NULL,
+ `membership` varchar(255) NOT NULL,
+ PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8
+
+*/
 
 // connect to the database
 $db = mysqli_connect('localhost', 'root', '', 'registration');
