@@ -140,7 +140,7 @@
                                                     <div class="form-group">
                                                         <div class="input-group">
                                                             <div class="input-group-addon"><i class="fa fa-user"></i></div>
-                                                            <input type="text" name="username" placeholder="Username" class="form-control">
+                                                            <input type="textbox" name="username" value=<?php echo $_SESSION['username']?> readonly="readonly" class="form-control">
                                                         </div>
                                                         <div class="input-group">
                                                             <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
