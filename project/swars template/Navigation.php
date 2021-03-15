@@ -157,11 +157,25 @@
                                                         <div class="input-group">
                                                             <div class="input-group-addon"><i class="fa fa-male"></i></div>
                                                             <select type="text" placeholder="People" name="people" class="form-control">
-                                                                <option>1 Person</option>
-                                                                <option>2 People</option>
-                                                                <option>3 People</option>
-                                                                <option>4 People</option>
-                                                                <option>5 People</option>
+                                                            <?php 
+                                                                $db = mysqli_connect('localhost', 'root', '', 'registration');
+                                                                $res_username =$_SESSION['username']; ;
+                                                                $memberhsip_query = "SELECT membership FROM users WHERE username='$res_username'";
+                                                                $result = mysqli_query($db, $memberhsip_query);
+                                                                $member = mysqli_fetch_assoc($result);
+                                                                if($member['membership']=='basic'){
+                                                                    echo '<option>1 Person</option>';
+                                                                    echo '<option>2 Person</option>';
+                                                                    echo '<option>3 Person</option>';
+                                                                }
+                                                                if($member['membership']=='member'){
+                                                                    echo '<option>1 Person</option>';
+                                                                    echo '<option>2 Person</option>';
+                                                                    echo '<option>3 Person</option>';
+                                                                    echo '<option>4 Person</option>';
+                                                                    echo '<option>5 Person</option>';
+                                                                }
+                                                            ?>
                                                             </select>
                                                         </div>
                                                     </div>
