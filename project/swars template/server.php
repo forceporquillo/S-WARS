@@ -4,6 +4,18 @@ session_start();
 $username = "";
 $email    = "";
 $errors = array();
+/*          INSERT THIS IN SQL QUERY WHEN CREATING TABLES FOR DATABASE(swars)
+
+CREATE TABLE `users` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `username` date NOT NULL,
+ `email` varchar(255) NOT NULL,
+ `password` VARCHAR(255) NOT NULL,
+ `membership` varchar(255) NOT NULL,
+ PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8
+
+*/
 
 // connect to the database
 $db = mysqli_connect('localhost', 'root', '', 'registration');
@@ -39,7 +51,9 @@ if (isset($_POST['reg_user'])) {
     if (count($errors) == 0) {
         $password = md5($password_1);//encrypt the password before saving in the database
 
-        $query = "INSERT INTO users (username, email, password) VALUES('$username', '$email', '$password')";
+        // Type of Membership: basic, member, admin
+
+        $query = "INSERT INTO users (username, email, password, membership) VALUES('$username', '$email', '$password', 'basic')";
         mysqli_query($db, $query);
         $_SESSION['username'] = $username;
         $_SESSION['success'] = "You have successfully registered";

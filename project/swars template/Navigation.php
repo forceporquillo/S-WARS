@@ -136,15 +136,15 @@
                                                 <p class="subtitle">You can call us directly at <span class="text-default"> 123-4567</span></p>
                                             </div>
                                             <div class="swin-sc swin-sc-contact-form dark mtl">
-                                                <form method="post" action="book.php">          <!-- Start of Reservation -->
+                                                <form method="post" action="calendar.php">          <!-- Start of Reservation -->
                                                     <div class="form-group">
                                                         <div class="input-group">
                                                             <div class="input-group-addon"><i class="fa fa-user"></i></div>
-                                                            <input type="text" name="username" placeholder="Username" class="form-control">
+                                                            <input type="textbox" name="username" value=<?php echo $_SESSION['username']?> readonly class="form-control">
                                                         </div>
                                                         <div class="input-group">
                                                             <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
-                                                            <input type="text" name="email" placeholder="Email" class="form-control">
+                                                            <input type="text" name="email" placeholder="Email" required="" class="form-control">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
@@ -152,33 +152,30 @@
                                                             <div class="input-group-addon">
                                                                 <div class="fa fa-phone"></div>
                                                             </div>
-                                                            <input type="number" placeholder="Phone" name="phone" class="form-control">
+                                                            <input type="number" placeholder="Phone" required="" name="phone" class="form-control">
                                                         </div>
                                                         <div class="input-group">
                                                             <div class="input-group-addon"><i class="fa fa-male"></i></div>
                                                             <select type="text" placeholder="People" name="people" class="form-control">
-                                                                <option>1 Person</option>
-                                                                <option>2 People</option>
-                                                                <option>3 People</option>
-                                                                <option>4 People</option>
-                                                                <option>5 People</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <div class="input-group">
-                                                            <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-                                                            <input type="text" name="date" placeholder="Date" class="form-control datepicker">
-                                                        </div>
-                                                        <div class="input-group">
-                                                            <div class="input-group-addon">
-                                                                <div class="fa fa-clock-o"></div>
-                                                            </div>
-                                                            <select type="text" placeholder="Time" name="time" class="form-control">
-                                                                <option>9 AM - 12 PM</option>
-                                                                <option>12 PM - 3 PM</option>
-                                                                <option>3 PM - 6 PM</option>
-                                                                <option>6 PM - 9 PM</option>
+                                                            <?php 
+                                                                $db = mysqli_connect('localhost', 'root', '', 'registration');
+                                                                $res_username =$_SESSION['username']; ;
+                                                                $memberhsip_query = "SELECT membership FROM users WHERE username='$res_username'";
+                                                                $result = mysqli_query($db, $memberhsip_query);
+                                                                $member = mysqli_fetch_assoc($result);
+                                                                if($member['membership']=='basic'){
+                                                                    echo '<option>1 Person</option>';
+                                                                    echo '<option>2 Person</option>';
+                                                                    echo '<option>3 Person</option>';
+                                                                }
+                                                                if($member['membership']=='member'){
+                                                                    echo '<option>1 Person</option>';
+                                                                    echo '<option>2 Person</option>';
+                                                                    echo '<option>3 Person</option>';
+                                                                    echo '<option>4 Person</option>';
+                                                                    echo '<option>5 Person</option>';
+                                                                }
+                                                            ?>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -186,7 +183,7 @@
                                                         <textarea class="form-control"></textarea>
                                                     </div>
                                                     <div class="form-group">
-                                                        <div class="swin-btn-wrap center"><a href="book.php" > <span><button class="swin-btn center form-submit" type="submit" name="book_user">Book Table</button></span></a></div>
+                                                        <div class="swin-btn-wrap center"><a href="calendar.php" > <span><button class="swin-btn center form-submit" type="submit" name="book_user">Book Table</button></span></a></div>
                                                     </div>
                                                 </form>             <!-- End of Reservation -->
                                             </div>
