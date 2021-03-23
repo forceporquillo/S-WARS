@@ -223,6 +223,26 @@
                                 background-attachment:fixed;
                                 background-position:center;
                                 background-size:cover;" class="section nav-light">
+                                <?php
+                                // $db = mysqli_connect('localhost', 'root', '', 'registration');
+                                // $res_username =$_SESSION['username']; ;
+                                // $memberhsip_query = "SELECT membership FROM users WHERE username='$res_username'";
+                                // $result = mysqli_query($db, $memberhsip_query);
+                                // $member = mysqli_fetch_assoc($result);
+                                    if($member['membership']=='member'){
+                                        $_SESSION['product'] = 'Basic Plan'; 
+                                        $_SESSION['price'] = 'P0 ';
+                                        $_SESSION['button'] = 'Cancel Membership';
+                                        $_SESSION['note'] = 'Reverting Membership to Basic Plan for '.$_SESSION['username'].'<br><br>Disregard Billing Address and Payment Information ';
+                                        $place1 = 'payment.php'; $place2 = '#';
+                                    }else{
+                                        $_SESSION['product'] = 'Member Plan'; 
+                                        $_SESSION['price'] = 'P50/month';
+                                        $_SESSION['button'] = 'Continue to Checkout';
+                                        $_SESSION['note'] = 'Availing Membership Plan for '.$_SESSION['username'];
+                                        $place1 = '#'; $place2 = 'payment.php';
+                                    }
+                                ?>
                         <section class="blog-section-03 padding-top-100 padding-bottom-100" id="pricing">
                             <div class="container">
                                 <div class="swin-sc swin-sc-title">
@@ -253,7 +273,7 @@
                                                     <p style="font-size:8px;text-align:center" class="blog-description">*Maximum number of guests includes the one who reserved.*</p>
                                                     <br>
                                                     <div class="form-group">
-                                                        <div class="swin-btn-wrap center"><a href=# class="swin-btn center form-submit"> <span>GET PLAN</span></a></div>
+                                                        <div class="swin-btn-wrap center"><a href=<?php echo $place1 ?> class="swin-btn center form-submit"> <span>GET PLAN</span></a></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -279,7 +299,7 @@
                                                     <p style="font-size:8px;text-align:center" class="blog-description">*Maximum number of guests includes the one who reserved.*</p>
                                                     <br>
                                                     <div class="form-group">
-                                                        <div class="swin-btn-wrap center"><a href=# class="swin-btn center form-submit"> <span>GET PLAN</span></a></div>
+                                                        <div class="swin-btn-wrap center"><a href=<?php echo $place2 ?> class="swin-btn center form-submit" name="member_pay"> <span>GET PLAN</span></a></div>
                                                     </div>
                                                 </div>
                                             </div>
