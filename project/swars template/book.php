@@ -1,7 +1,7 @@
 <?php
 session_start();
 $db = mysqli_connect('localhost', 'root', '', 'registration');
-$res_username =$_SESSION['username']; ;
+$res_username =$_SESSION['username'];
 $memberhsip_query = "SELECT membership FROM users WHERE username='$res_username'";
 $result = mysqli_query($db, $memberhsip_query);
 
@@ -37,7 +37,7 @@ if(isset($_POST['submit'])){
             $stmt = $mysqli->prepare("INSERT INTO bookings (username,name, timeslot, email, date) VALUES (?,?,?,?,?)");
             $stmt->bind_param('sssss', $res_username, $name, $timeslot, $email, $date);
             $stmt->execute();
-            $msg = "<div class='alert alert-success'>Booking Successfull</div>";
+            $msg = "<div class='alert alert-success'>Booking Successful</div>";
             $bookings[] = $timeslot;
             $stmt->close();
             $mysqli->close();
@@ -94,16 +94,14 @@ function checkSlots($mysqli, $date){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title></title>
-
+    <title>Timeslot</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/main.css">
   </head>
 
   <body>
     <div class="container">
-        <h1 class="text-center">Book for Date: <?php echo date('M/d/Y', strtotime($date)); ?></h1><hr>
+        <h1 class="text-center" style="font-family:Montserrat,sans-serif">Book for Date: <?php echo date('M/d/Y', strtotime($date)); ?></h1><hr>
         <div class="row">
             <div class="col-md-12">
             <?php echo(isset($msg))?$msg:""; ?>

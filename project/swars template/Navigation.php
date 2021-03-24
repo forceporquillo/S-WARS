@@ -37,6 +37,28 @@
     <script src="assets/vendors/respond.min.js"></script>
     <script src="assets/vendors/pageloading/js/snap.svg-min.js"></script>
     <script src="assets/vendors/pageloading/sidebartransition/js/modernizr.custom.js"></script>
+    <style>
+        #myBtn {
+            box-shadow:0 0 10px 0 rgb(0 0 0 / 20%);
+            position: fixed;
+            bottom: 40px;
+            right: 1.5%;
+            display: none;
+            z-index: 9;
+            background: #f15f2a;
+            border: 3px solid #ffffff;
+            border-radius: 50%;
+            height: 47px;
+            width: 47px;
+            text-align: center;
+            transition: all 0.2s linear;
+            color:white;
+            font-size:20px;
+        }
+        #myBtn:hover {
+            background-color:#ffbb99;
+        }
+    </style>
 </head>
 <body class="st-fullpage">
 <div id="st-container" class="st-container">
@@ -57,11 +79,11 @@
                                 <li><a href="#overview">Overview</a></li>
                                 <li><a href="#reservation">Reservation</a></li>
                                 <li><a href="#menu">Menu</a></li>
-                                <li><a href="#pricing">Pricing</a></li>
                                 <li><a href="#ratings">Ratings and Review</a></li>
+                                <li><a href="#pricing">Pricing</a></li>
                                 <br><br>
-                                <li><button style="background-color: transparent;
-                border-color:#d70040;"><a href="notification.php?logout='1'" style="color:#d70040">LOG OUT</a></button></li>
+                                <li><button name="logout" style="background-color: transparent;
+                border-color:#d70040;"><a href="notification.php?logout='1'" onclick="return confirm('Are you sure you want to logout?')" style="color:#d70040">LOG OUT</a></button></li>
                             </ul>
                         </div>
                     </nav>
@@ -202,13 +224,13 @@
                                             <p class="top-title wow fadeInUp"><span>Top Quality Menu</span></p>
                                             <h3 data-wow-delay="0.3s" class="title wow fadeInUp">Korean BBQ</h3>
                                         </div>
-                                        <div data-wow-delay="0.6s" class="swin-sc swin-sc-product products-01 style-01 woocommerce wow fadeInUp">
+                                        <div data-wow-delay="0.6s" class="products-01 style-01 fadeInUp">
                                             <div class="row" >
                                                     <div class="cat-wrapper main-slider">
-                                                        <div class="item"><img src="assets/images/pages/menu 1.jpg" alt="" class="img img-responsive"></div>
-                                                        <div class="item"><img src="assets/images/pages/menu 2.jpg" alt="" class="img img-responsive"></div>
-                                                        <div class="item"><img src="assets/images/pages/menu 3.jpg" alt="" class="img img-responsive"></div>
-                                                        <div class="item"><img src="assets/images/pages/menu 4.jpg" alt="" class="img img-responsive"></div>
+                                                        <div class="item"><img src="assets/images/pages/menu 1.jpg"  alt="" class="img img-responsive"></div>
+                                                        <div class="item"><img src="assets/images/pages/menu 2.jpg"  alt="" class="img img-responsive"></div>
+                                                        <div class="item"><img src="assets/images/pages/menu 3.jpg"  alt="" class="img img-responsive"></div>
+                                                        <div class="item"><img src="assets/images/pages/menu 4.jpg"  alt="" class="img img-responsive"></div>
                                                     </div>
                                                     <div class="nav-slider">
                                                     </div>
@@ -219,10 +241,114 @@
                             </div>
                         </section>
                     </div>
-                    <div style="background-image: url('assets/images/pages/samgyup.jpg');
+                    <div style="background-image: url('assets/images/pages/rating.jpg');
                                 background-attachment:fixed;
                                 background-position:center;
                                 background-size:cover;" class="section nav-light">
+                        <section class="product-sesction-02 padding-top-120 padding-bottom-100" id="ratings">
+                            <div class="container">
+                                <div class="swin-sc swin-sc-title">
+                                    <p class="top-title"><span>Ratings and Reviews</span></p>
+                                    <h3 style="color:white;filter:brightness(200%)" class="title">Customer Reviews</h3>
+                                </div>
+                                <div class="swin-sc swin-sc-product products-02 carousel-02">
+                                    <div class="row">
+                                        <div class="col-md-2"></div>
+                                        <div data-slide-toshow="5" class="cat-wrapper-02 main-slider col-md-8">
+                                        </div>
+                                        <div class="col-md-2"></div>
+                                    </div>
+                                    <div class="products nav-slider">
+                                        <div class="row slick-padding">
+                                            <div class="col-md-4 col-sm-6 col-xs-12 img img-responsive wow zoomIn">
+                                                <div style="background-color:white" class="blog-item item swin-transition">
+                                                    <div class="block-img"><br><p style="background-color:white;padding-left:10px; padding-right:10px; text-align:justify;font-style:italic">"Very budget friendly and lots of meat varieties. Friendly and attentive staff.
+                                                            It'a good to eat at especially for groups of 4 and above. Might just want to be there earlier because the waiting queue is long. But after the waiting, you'll know it's worth it."</p>
+                                                        <div class="block-circle price-wrapper"><span class="price woocommerce-Price-amount amount"><span class="price-symbol"></span>4.0</span></div>
+                                                    </div>
+                                                    <div style="background-color:white;box-shadow:0 0 10px 0 rgb(0 0 0 / 20%);" class="block-content">
+                                                        <div class="product-info">
+                                                            <ul class="list-inline">
+                                                                <li class="author"><span class="text">Ellie-Mae Orozco</span></li>
+                                                                <li class="rating"><a href="javascript:void(0)"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i></a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-sm-6 col-xs-12 img img-responsive wow zoomIn">
+                                                <div style="background-color:white" class="blog-item item swin-transition">
+                                                    <div class="block-img"><br><p style="background-color:white;padding-left:10px; padding-right:10px; text-align:justify;font-style:italic">"Service was great and speedy. The bulgogi is to die for! All side dishes were also tasty. The only downside is that they use bunch of charcoals (not environment-friendly) which has to be replaced every time the oils from the meat saturates it.
+                                                            Had to wait for almost an hour but it was worth waiting. There was no limit on the time and we stayed for at least 4 hours (i think), which is fine coz there were less customers as the store was about to close by the time we left."</p>
+                                                        <div class="block-circle price-wrapper"><span class="price woocommerce-Price-amount amount"><span class="price-symbol"></span>4.2</span></div>
+                                                    </div>
+                                                    <div style="background-color:white; box-shadow:0 0 10px 0 rgb(0 0 0 / 20%);" class="block-content">
+                                                        <div class="product-info">
+                                                            <ul class="list-inline">
+                                                                <li class="author"><span class="text">Ryan Aguirre</span></li>
+                                                                <li class="rating"><a href="javascript:void(0)"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-full"></i></a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-sm-6 col-xs-12 img img-responsive wow zoomIn">
+                                                <div style="background-color:white" class="blog-item item swin-transition">
+                                                    <div class="block-img"><br><p style="background-color:white;padding-left:10px; padding-right:10px; text-align:justify;font-style:italic">"Worth the wait. If you just walk in, better if you'll be there as early as their opening time so that you can secure a slot for lunch. My bf and I love the unli meat.
+                                                            Staff would assist you somehow though it really takes time to approach because of many customers they entertain. Nevertheless, our experience is good!"</p>
+                                                        <div class="block-circle price-wrapper"><span class="price woocommerce-Price-amount amount"><span class="price-symbol"></span>4.5</span></div>
+                                                    </div>
+                                                    <div style="background-color:white;box-shadow:0 0 10px 0 rgb(0 0 0 / 20%);" class="block-content">
+                                                        <div class="product-info">
+                                                            <ul class="list-inline">
+                                                                <li class="author"><span class="text">Stefano Silva</span></li>
+                                                                <li class="rating"><a href="javascript:void(0)"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i></a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-sm-6 col-xs-12 img img-responsive wow zoomIn">
+                                                <div style="background-color:white" class="blog-item item swin-transition">
+                                                    <div class="block-img"><br><p style="background-color:white;padding-left:10px; padding-right:10px; text-align:justify;font-style:italic">"well i love Korean cuisine the meat are great i love it! i love the ambiance here also. the only thing i didn't like was the service.
+                                                            well i hope next time they can accommodate their customers well. but still i will definitely be back here."</p>
+                                                        <div class="block-circle price-wrapper"><span class="price woocommerce-Price-amount amount"><span class="price-symbol"></span>3.7</span></div>
+                                                    </div>
+                                                    <div style="background-color:white;box-shadow:0 0 10px 0 rgb(0 0 0 / 20%);" class="block-content">
+                                                        <div class="product-info">
+                                                            <ul class="list-inline">
+                                                                <li class="author"><span class="text">Jay-Jay Campos</span></li>
+                                                                <li class="rating"><a href="javascript:void(0)"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i><i class="fa fa-star-o"></i></a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-sm-6 col-xs-12 img img-responsive wow zoomIn">
+                                                <div style="background-color:white" class="blog-item item swin-transition">
+                                                    <div class="block-img"><br><p style="background-color:white;padding-left:10px; padding-right:10px; text-align:justify;font-style:italic">"I ate here together with some friends and we decided to get the Unlimited 2 option wherein we can have both Pork and Beef. The meats are thick and does not burn easily.
+                                                            Also, the charcoal grill is better now. The side dishes are generous in serving."</p>
+                                                        <div class="block-circle price-wrapper"><span class="price woocommerce-Price-amount amount"><span class="price-symbol"></span>4.4</span></div>
+                                                    </div>
+                                                    <div style="background-color:white;box-shadow:0 0 10px 0 rgb(0 0 0 / 20%);" class="block-content">
+                                                        <div class="product-info">
+                                                            <ul class="list-inline">
+                                                                <li class="author"><span class="text">Glenn Lee</span></li>
+                                                                <li class="rating"><a href="javascript:void(0)"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i></a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </section>
+                    </div>
+                    <div style="background-color:white;
+                                background-attachment:fixed;
+                                background-position:center;
+                                background-size:cover;" class="section pbn">
                                 <?php
                                 // $db = mysqli_connect('localhost', 'root', '', 'registration');
                                 // $res_username =$_SESSION['username']; ;
@@ -247,7 +373,7 @@
                             <div class="container">
                                 <div class="swin-sc swin-sc-title">
                                     <p class="top-title"><span>Pricing</span></p>
-                                    <h3 class="title" style="color:white">Membership Plan</h3>
+                                    <h3 class="title">Membership Plan</h3>
                                 </div>
                                 <div class="swin-sc swin-sc-blog-masonry">
                                     <div class="grid">
@@ -304,108 +430,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-
-                    </div>
-                    <div style="background-color:white" class="section pbn">
-                        <section class="product-sesction-02 padding-top-120 padding-bottom-100" id="ratings">
-                            <div class="container">
-                                <div class="swin-sc swin-sc-title">
-                                    <p class="top-title"><span>Ratings and Reviews</span></p>
-                                    <h3 class="title">Customer Reviews</h3>
-                                </div>
-                                <div class="swin-sc swin-sc-product products-02 carousel-02">
-                                    <div class="row">
-                                        <div class="col-md-2"></div>
-                                        <div data-slide-toshow="5" class="cat-wrapper-02 main-slider col-md-8">
-                                        </div>
-                                        <div class="col-md-2"></div>
-                                    </div>
-                                    <div class="products nav-slider">
-                                        <div class="row slick-padding">
-                                            <div class="col-md-4 col-sm-6 col-xs-12 img img-responsive wow zoomIn">
-                                                <div class="blog-item item swin-transition">
-                                                    <div class="block-img"><br><p style="padding-left:10px; padding-right:10px; text-align:justify;font-style:italic">"Very budget friendly and lots of meat varieties. Friendly and attentive staff.
-                                                            It'a good to eat at especially for groups of 4 and above. Might just want to be there earlier because the waiting queue is long. But after the waiting, you'll know it's worth it."</p>
-                                                        <div class="block-circle price-wrapper"><span class="price woocommerce-Price-amount amount"><span class="price-symbol"></span>4.0</span></div>
-                                                    </div>
-                                                    <div class="block-content">
-                                                        <div class="product-info">
-                                                            <ul class="list-inline">
-                                                                <li class="author"><span class="text">Ellie-Mae Orozco</span></li>
-                                                                <li class="rating"><a href="javascript:void(0)"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i></a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4 col-sm-6 col-xs-12 img img-responsive wow zoomIn">
-                                                <div class="blog-item item swin-transition">
-                                                    <div class="block-img"><br><p style="padding-left:10px; padding-right:10px; text-align:justify;font-style:italic">"Service was great and speedy. The bulgogi is to die for! All side dishes were also tasty. The only downside is that they use bunch of charcoals (not environment-friendly) which has to be replaced every time the oils from the meat saturates it.
-                                                            Had to wait for almost an hour but it was worth waiting. There was no limit on the time and we stayed for at least 4 hours (i think), which is fine coz there were less customers as the store was about to close by the time we left."</p>
-                                                        <div class="block-circle price-wrapper"><span class="price woocommerce-Price-amount amount"><span class="price-symbol"></span>4.2</span></div>
-                                                    </div>
-                                                    <div class="block-content">
-                                                        <div class="product-info">
-                                                            <ul class="list-inline">
-                                                                <li class="author"><span class="text">Ryan Aguirre</span></li>
-                                                                <li class="rating"><a href="javascript:void(0)"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-full"></i></a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4 col-sm-6 col-xs-12 img img-responsive wow zoomIn">
-                                                <div class="blog-item item swin-transition">
-                                                    <div class="block-img"><br><p style="padding-left:10px; padding-right:10px; text-align:justify;font-style:italic">"Worth the wait. If you just walk in, better if you'll be there as early as their opening time so that you can secure a slot for lunch. My bf and I love the unli meat.
-                                                            Staff would assist you somehow though it really takes time to approach because of many customers they entertain. Nevertheless, our experience is good!"</p>
-                                                        <div class="block-circle price-wrapper"><span class="price woocommerce-Price-amount amount"><span class="price-symbol"></span>4.5</span></div>
-                                                    </div>
-                                                    <div class="block-content">
-                                                        <div class="product-info">
-                                                            <ul class="list-inline">
-                                                                <li class="author"><span class="text">Stefano Silva</span></li>
-                                                                <li class="rating"><a href="javascript:void(0)"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i></a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4 col-sm-6 col-xs-12 img img-responsive wow zoomIn">
-                                                <div class="blog-item item swin-transition">
-                                                    <div class="block-img"><br><p style="padding-left:10px; padding-right:10px; text-align:justify;font-style:italic">"well i love Korean cuisine the meat are great i love it! i love the ambiance here also. the only thing i didn't like was the service.
-                                                            well i hope next time they can accommodate their customers well. but still i will definitely be back here."</p>
-                                                        <div class="block-circle price-wrapper"><span class="price woocommerce-Price-amount amount"><span class="price-symbol"></span>3.7</span></div>
-                                                    </div>
-                                                    <div class="block-content">
-                                                        <div class="product-info">
-                                                            <ul class="list-inline">
-                                                                <li class="author"><span class="text">Jay-Jay Campos</span></li>
-                                                                <li class="rating"><a href="javascript:void(0)"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i><i class="fa fa-star-o"></i></a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4 col-sm-6 col-xs-12 img img-responsive wow zoomIn">
-                                                <div class="blog-item item swin-transition">
-                                                    <div class="block-img"><br><p style="padding-left:10px; padding-right:10px; text-align:justify;font-style:italic">"I ate here together with some friends and we decided to get the Unlimited 2 option wherein we can have both Pork and Beef. The meats are thick and does not burn easily.
-                                                            Also, the charcoal grill is better now. The side dishes are generous in serving."</p>
-                                                        <div class="block-circle price-wrapper"><span class="price woocommerce-Price-amount amount"><span class="price-symbol"></span>4.4</span></div>
-                                                    </div>
-                                                    <div class="block-content">
-                                                        <div class="product-info">
-                                                            <ul class="list-inline">
-                                                                <li class="author"><span class="text">Glenn Lee</span></li>
-                                                                <li class="rating"><a href="javascript:void(0)"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i></a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
                                     </div>
                                 </div>
                             </div>
@@ -633,6 +657,27 @@
         </div>
     </div>
 </div>
+<button onclick="topFunction()" id="myBtn" title="Go to top" class="animated zoomIn" ">&#10514;</button>
+<script>
+    var mybutton = document.getElementById("myBtn");
+    var rootElement = document.documentElement
+    window.onscroll = function() {scrollFunction()};
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            mybutton.style.display = "block";
+        } else {
+            mybutton.style.display = "none";
+        }
+    }
+    function scrollToTop() {
+        rootElement.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        })
+    }
+    mybutton.addEventListener("click", scrollToTop)
+    document.addEventListener("scroll", scrollFunction)
+</script>
 <!-- jQuery-->
 <script src="assets/vendors/jquery-1.10.2.min.js"></script>
 <!-- Bootstrap JavaScript-->

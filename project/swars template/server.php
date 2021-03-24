@@ -1,3 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title></title>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+        body{
+            font-family:Montserrat,sans-serif;
+        }
+    </style>
+</head>
+<body>
 <?php
 session_start();
 
@@ -28,6 +41,10 @@ if (isset($_POST['reg_user'])) {
     $password_1 = mysqli_real_escape_string($db, $_POST['password_1']);
     $password_2 = mysqli_real_escape_string($db, $_POST['password_2']);
 
+    if ($password_1 != $password_2) {
+        array_push($errors, "");
+        echo '<script type="text/javascript">swal("ERROR", "Passwords do not match", "error");</script>';
+    }
 
     // first check the database to make sure
     // a user does not already exist with the same username and/or email
@@ -39,11 +56,17 @@ if (isset($_POST['reg_user'])) {
 
     if ($user) { // if user exists
         if ($user['username'] === $username) {
-            array_push($errors, "Username already exists");
+            array_push($errors, "");
+            echo '<script type="text/javascript">swal("ERROR", "Username already exists!", "error");</script>';
         }
 
         if ($user['email'] === $email) {
-            array_push($errors, "email already exists");
+            array_push($errors, "");
+            echo '<script type="text/javascript">swal("ERROR", "Email already exists!", "error");</script>';
+        }
+        if ($user['username'] === $username && $user['email'] === $email) {
+            array_push($errors, "");
+            echo '<script type="text/javascript">swal("ERROR", "Username and Email already exists!", "error");</script>';
         }
     }
 
@@ -56,8 +79,8 @@ if (isset($_POST['reg_user'])) {
         $query = "INSERT INTO users (username, email, password, membership) VALUES('$username', '$email', '$password', 'basic')";
         mysqli_query($db, $query);
         $_SESSION['username'] = $username;
-        $_SESSION['success'] = "You have successfully registered";
-        header('location: signlog.php');
+        $_SESSION['register'] = "";
+        echo '<script type="text/javascript">swal("Success!", "You have successfully registered!", "success");</script>';
     }
 }
 // LOGIN USER
@@ -71,11 +94,14 @@ if (isset($_POST['login_user'])) {
         $results = mysqli_query($db, $query);
         if (mysqli_num_rows($results) == 1) {
             $_SESSION['username'] = $username;
-            $_SESSION['success'] = "You have successfully logged in";
+            $_SESSION['success'] = "";
             header('location: Navigation.php');
         }else {
-            array_push($errors, "Wrong username/password combination");
+            array_push($errors, "");
+            echo '<script type="text/javascript">swal("ERROR", "Wrong username/password combination!", "error");</script>';
         }
     }
 }
 ?>
+</body>
+</html>

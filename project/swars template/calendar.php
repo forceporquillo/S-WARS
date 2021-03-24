@@ -1,5 +1,5 @@
 <?php
-/*          INSERT THIS IN SQL QUERY WHEN CREATING TABLES FOR DATABASE(bookingcalender)
+/*          INSERT THIS IN SQL QUERY WHEN CREATING TABLES FOR DATABASE(bookingcalendar)
 
 CREATE TABLE `bookings` (
  `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -37,13 +37,13 @@ function build_calendar($month, $year) {
     $datetoday = date('Y-m-d');
     
     $calendar = "<table class='table table-bordered'>";
-    $calendar .= "<center><h2>$monthName $year</h2>";
-    $calendar.= "<a class='btn btn-xs btn-primary' href='?month=".date('m', mktime(0, 0, 0, $month-1, 1, $year))."&year=".date('Y', mktime(0, 0, 0, $month-1, 1, $year))."'>Previous Month</a> ";
+    $calendar .= "<center><h2 style='font-weight:bold'>$monthName $year</h2>";
+    $calendar.= "<a style='position:fixed;margin-left:-120px;margin-top:-40px;font-weight:bold;font-size:20px;padding-top:0;height:30px;width:30px;border:none;border-radius:50%;background-color:#f9b79f;color:white;' class='btn btn-xs btn-primary' href='?month=".date('m', mktime(0, 0, 0, $month-1, 1, $year))."&year=".date('Y', mktime(0, 0, 0, $month-1, 1, $year))."'>&#8249;</a> ";
     
-    $calendar.= " <a class='btn btn-xs btn-primary' href='?month=".date('m')."&year=".date('Y')."'>Current Month</a> ";
+    $calendar.= " <a style='padding: 5px 15px;border-radius:20px;border:none;background-color:#f9b79f' class='btn btn-xs btn-primary' href='?month=".date('m')."&year=".date('Y')."'>Current Month</a> ";
     
-    $calendar.= "<a class='btn btn-xs btn-primary' href='?month=".date('m', mktime(0, 0, 0, $month+1, 1, $year))."&year=".date('Y', mktime(0, 0, 0, $month+1, 1, $year))."'>Next Month</a></center><br>";
-    
+    $calendar.= "<a style='position:fixed;margin-left:90px;margin-top:-40px;font-weight:bold;font-size:20px;padding-top:0;height:30px;width:30px;border:none;border-radius:50%;background-color:#f9b79f;color:white;' class='btn btn-xs btn-primary' href='?month=".date('m', mktime(0, 0, 0, $month+1, 1, $year))."&year=".date('Y', mktime(0, 0, 0, $month+1, 1, $year))."'>&#8250;</a></center><br>";
+
       $calendar .= "<tr>";
      // Create the calendar headers
      foreach($daysOfWeek as $day) {
@@ -81,14 +81,14 @@ function build_calendar($month, $year) {
             $calendar.="<td><h4>$currentDay</h4> <button class='btn btn-danger btn-xs'>Holiday</button>";
         } 
         elseif($date<date('Y-m-d')){
-            $calendar.="<td><h4>$currentDay</h4> <button class='btn btn-danger btn-xs'>N/A</button>";
+            $calendar.="<td style='background-color:#f2f2f2'><h4>$currentDay</h4> <button class='btn btn-danger btn-xs' style='visibility:hidden'>Disabled</button>";
         }else{
             $totalbookings = checkSlots($mysqli,$date);
             if($totalbookings==20){
                 $calendar.="<td class='$today'><h4>$currentDay</h4> <a href='#' class='btn btn-danger btn-xs'>All Booked</a>";
             }else{
                 $availableslots = 20 - $totalbookings;
-                $calendar.="<td class='$today'><h4>$currentDay</h4> <a href='book.php?date=".$date."' class='btn btn-success btn-xs'>Book</a> <small><i>$availableslots slots left</i></small>";
+                $calendar.="<td class='$today'><h4>$currentDay</h4> <a href='book.php?date=".$date."' style='border-color:#71c171;background-color:#71c171;border-radius:20px;padding: 2px 8px;' class='btn btn-success btn-xs'>Book</a><br><small><i>$availableslots slots left</i></small>";
             }
         }
         
@@ -127,12 +127,12 @@ function build_calendar($month, $year) {
     }
 ?>
 
-<html>
-
+<html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <style>
+        @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
        @media only screen and (max-width: 760px),
         (min-device-width: 802px) and (max-device-width: 1020px) {
             table, thead, tbody, th, td, tr {
@@ -181,6 +181,9 @@ function build_calendar($month, $year) {
         }
         .row{margin-top: 20px;}
         .today{background:#fff0b3;}
+        body {
+            font-family: Montserrat, sans-serif;
+        }
 
     </style>
 </head>
