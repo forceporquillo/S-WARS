@@ -5,63 +5,12 @@
 <head>
     <title> Payment </title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-    @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
-body {font-family:Montserrat,sans-serif;color:#29272e;font-size:17px;padding:8px}
-* {box-sizing: border-box;}
-.row {display: -ms-flexbox; /* IE10 */
-  display: flex;
-  -ms-flex-wrap: wrap; /* IE10 */
-  flex-wrap: wrap;margin: 0 -16px;
-}
-.col-25 {-ms-flex: 25%; /* IE10 */ flex: 25%;}
-.col-50 {-ms-flex: 50%; /* IE10 */flex: 50%;}
-.col-75 {-ms-flex: 75%; /* IE10 */flex: 75%;}
-.col-25,.col-50,.col-75 {padding: 0 16px;}
-
-.container {
-  color:#29272e;
-  background-color: #f2f2f2;
-  padding: 5px 20px 15px 20px;
-  border:none;
-  border-radius:20px;
-}
-input[type=text] {
-  width: 100%;
-  margin-bottom: 20px;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-}
-label {margin-bottom: 10px;display: block;}
-.icon-container {
-  margin-bottom: 20px;
-  padding: 7px 0;
-  font-size: 24px;
-}
-.btn {
-  background-color: #4CAF50;
-  color: white;
-  padding: 12px;
-  margin: 10px 0;
-  border: none;
-  width: 100%;
-  border-radius: 20px;
-  cursor: pointer;
-  font-size: 17px;
-  font-family:Montserrat,sans-serif;
-}
-.btn:hover {background-color: #45a049;}
-a {color: #2196F3;}
-hr {border: 1px solid lightgrey;}
-span.price {float: right; color: grey;}
-/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (also change the direction - make the "cart" column go on top) */
-@media (max-width: 800px) {.row {flex-direction: column-reverse;}.col-25 {margin-bottom: 20px;}}
-</style>
+<link rel="stylesheet" href="payment_styles.css"
 </head>
 <body>
-<h2 style="text-align:center">S-WARS Membership Checkout Form</h2>
-<p style="text-align:center"><?php echo $_SESSION['note'] ?></p><br><br>
+<a href="Navigation.php"><i style="color:black;font-size:30px;margin-left:-500px;padding-top:20px;" class="fa fa-arrow-left"></i></a>
+<h2 style="text-align:center;margin-top:-25px;">S-WARS Membership Checkout Form</h2>
+<p style="text-align:center;margin-top:0"><?php echo $_SESSION['note'] ?></p><br><br>
 <div class="row">
   <div class="col-75">
     <div class="container">
@@ -69,23 +18,29 @@ span.price {float: right; color: grey;}
         <div class="row">
           <div class="col-50">
             <h3>Billing Address</h3>
-            <label for="fname"><i class="fa fa-user"></i> Full Name</label>
+            <label class="custom-field one" for="fname">
             <input type="text" id="fname" name="firstname" required value="John M. Doe">
-            <label for="email"><i class="fa fa-envelope"></i> Email</label>
+                <span class="placeholder"> Full Name</span></label>
+            <label class="custom-field one" for="email">
             <input type="text" id="email" name="email" required value="john@example.com">
-            <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
+                <span class="placeholder"> Email </span></label>
+            <label class="custom-field one" for="adr">
             <input type="text" id="adr" name="address" required value="542 W. 15th Street">
-            <label for="city"><i class="fa fa-institution"></i> City</label>
+              <span class="placeholder"> Address </span></label>
+            <label class="custom-field one" for="city">
             <input type="text" id="city" name="city" required value="New York">
+              <span class="placeholder"> City </span></label>
 
             <div class="row">
               <div class="col-50">
-                <label for="state">State</label>
+                <label class="custom-field one" for="state">
                 <input type="text" id="state" required name="state" value="NY">
+                  <span class="placeholder"> State</span></label>
               </div>
               <div class="col-50">
-                <label for="zip">Zip</label>
+                <label class="custom-field one" for="zip">
                 <input type="text" id="zip" required name="zip" value="10001">
+                  <span class="placeholder"> Zip </span></label>
               </div>
             </div>
           </div>
@@ -94,25 +49,30 @@ span.price {float: right; color: grey;}
             <h3>Payment</h3>
             <label for="fname">Accepted Cards</label>
             <div class="icon-container">
-              <i class="fa fa-cc-visa" style="color:navy;"></i>
-              <i class="fa fa-cc-amex" style="color:blue;"></i>
-              <i class="fa fa-cc-mastercard" style="color:red;"></i>
-              <i class="fa fa-cc-discover" style="color:orange;"></i>
+              <i class="fa fa-cc-visa" style="color:#29272e;"></i>
+              <i class="fa fa-cc-amex" style="color:#15aabf;"></i>
+              <i class="fa fa-cc-mastercard" style="color:#ff6666;"></i>
+              <i class="fa fa-cc-discover" style="color:#ffcc66;"></i>
             </div>
-            <label for="cname">Name on Card</label>
+            <label class="custom-field one" for="cname">
             <input type="text" id="cname" name="cardname" required value="John More Doe">
-            <label for="ccnum">Credit card number</label>
+              <span class="placeholder"> Name on Card </span></label>
+            <label class="custom-field one" for="ccnum">
             <input type="text" id="ccnum" name="cardnumber" required value="1111-2222-3333-4444">
-            <label for="expmonth">Exp Month</label>
+              <span class="placeholder"> Credit card number </span></label>
+            <label class="custom-field one" for="expmonth">
             <input type="text" id="expmonth" name="expmonth" required value="September">
+              <span class="placeholder"> Exp Month </span></label>
             <div class="row">
               <div class="col-50">
-                <label for="expyear">Exp Year</label>
+                <label class="custom-field one" for="expyear">
                 <input type="text" id="expyear" name="expyear" required value="2018">
+                  <span class="placeholder"> Exp Year </span></label>
               </div>
               <div class="col-50">
-                <label for="cvv">CVV</label>
+                <label class="custom-field one" for="cvv">
                 <input type="text" id="cvv" name="cvv" required value="352">
+                  <span class="placeholder"> CVV </span></label>
               </div>
             </div>
           </div>
