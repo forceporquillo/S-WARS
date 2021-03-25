@@ -43,7 +43,7 @@ function build_calendar($month, $year) {
     $calendar.= " <a style='padding: 5px 15px;border-radius:20px;border:none;background-color:#f9b79f' class='btn btn-xs btn-primary' href='?month=".date('m')."&year=".date('Y')."'>Current Month</a> ";
     
     $calendar.= "<a style='position:fixed;margin-left:90px;margin-top:-40px;font-weight:bold;font-size:20px;padding-top:0;height:30px;width:30px;border:none;border-radius:50%;background-color:#f9b79f;color:white;' class='btn btn-xs btn-primary' href='?month=".date('m', mktime(0, 0, 0, $month+1, 1, $year))."&year=".date('Y', mktime(0, 0, 0, $month+1, 1, $year))."'>&#8250;</a></center><br>";
-    
+
       $calendar .= "<tr>";
      // Create the calendar headers
      foreach($daysOfWeek as $day) {
