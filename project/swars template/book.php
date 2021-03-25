@@ -95,13 +95,20 @@ function checkSlots($mysqli, $date){
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Timeslot</title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/main.css">
   </head>
-
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+    body {
+        font-family:Montserrat,sans-serif;
+    }
+</style>
   <body>
     <div class="container">
-        <h1 class="text-center" style="font-family:Montserrat,sans-serif">Book for Date: <?php echo date('M/d/Y', strtotime($date)); ?></h1><hr>
+        <a href="calendar.php"><i style="color:black;font-size:30px;margin-left:-50px;padding-top:40px;" class="fa fa-arrow-left"></i></a>
+        <h1 class="text-center" style="margin-top:-30px;">Book for Date: <?php echo date('M/d/Y', strtotime($date)); ?></h1><hr>
         <div class="row">
             <div class="col-md-12">
             <?php echo(isset($msg))?$msg:""; ?>

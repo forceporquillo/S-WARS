@@ -103,5 +103,28 @@ if (isset($_POST['login_user'])) {
     }
 }
 ?>
+<?php
+session_start();
+
+if(isset($_SESSION['logged_in'])) {
+    header('location: admin.php');
+}
+?>
+<?php
+// LOGIN ADMIN
+static $username = 'admin';
+static $password = 'swarz';
+
+if (isset($_POST['login_user'])) {
+    $username_input = $_POST['username'];
+    $password_input = $_POST['password'];
+
+    if ($username == $username_input && $password == $password_input) {
+        $_SESSION['username'] = $username;
+        $_SESSION['logged_in'] = true;
+        header('location: admin.php');
+    }
+}
+?>
 </body>
 </html>
