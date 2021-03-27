@@ -154,6 +154,14 @@ function checkSlots($mysqli, $date){
                                     <label for="">Email</label>
                                     <input required type="email" class="form-control" name="email">
                                 </div>
+                                <div class="form-group">
+                                    <label for="">No. of Guests</label>
+                                    <input required type="guest" class="form-control" name="guest">
+                                </div>
+                                 <div class="form-group">
+                                    <label for="">Contact no.</label>
+                                    <input required type="number" class="form-control" name="number">
+                                </div>
                                 <div class="form-group pull-right">
                                     <button name="submit" type="submit" class="btn btn-primary">Submit</button>
                                 </div>

@@ -7,7 +7,7 @@ if (!isset($_SESSION['username'])) {
 if (isset($_GET['logout'])) {
     session_destroy();
     unset($_SESSION['username']);
-    header("location: signlog.php");
+    header('location: signlog.php');
 }
 ?>
 <!DOCTYPE html>
