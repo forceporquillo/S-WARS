@@ -185,18 +185,12 @@
                                                                 $memberhsip_query = "SELECT membership FROM users WHERE username='$res_username'";
                                                                 $result = mysqli_query($db, $memberhsip_query);
                                                                 $member = mysqli_fetch_assoc($result);
-                                                                if($member['membership']=='basic'){
-                                                                    echo '<option>1 Person</option>';
-                                                                    echo '<option>2 Person</option>';
-                                                                    echo '<option>3 Person</option>';
+
+                                                                $option = ($member['membership'] == 'basic') ? 3 : 5;     
+                                                                for ($i = 1; $i <= $option; $i++) {
+                                                                    echo "<option>$i Person</option>";
                                                                 }
-                                                                if($member['membership']=='member'){
-                                                                    echo '<option>1 Person</option>';
-                                                                    echo '<option>2 Person</option>';
-                                                                    echo '<option>3 Person</option>';
-                                                                    echo '<option>4 Person</option>';
-                                                                    echo '<option>5 Person</option>';
-                                                                }
+                                             
                                                             ?>
                                                             </select>
                                                         </div>
