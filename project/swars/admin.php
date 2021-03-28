@@ -1,3 +1,40 @@
+<?php
+
+$db = mysqli_connect('localhost', 'root', '', 'bookingcalendar');
+
+$bookings = mysqli_query($db, 'SELECT * FROM bookings');
+$count = mysqli_num_rows($bookings);
+
+$g = 0;
+$customers = 0;
+
+$names = array();
+$date_time = array();
+$guest = array();
+$numbers = array();
+
+while ($row = $bookings->fetch_assoc()) {
+    array_push($names, $row['name']);
+
+    $date = $row['date'];
+    $time = $row['timeslot'];
+    $num = $row['contact_number'];
+
+    $num = ($num == NULL) ? "091234567890" : $num;
+    array_push($numbers, $num);
+
+    $dt = $date . '-' . $time;
+
+    array_push($date_time, $dt);
+
+    $ge = $row['number_guest'];
+    $ge = ($ge == NULL) ? 5 : $ge;
+    array_push($guest, $ge);
+
+    $customers += $ge;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -64,7 +101,7 @@
             <div class="cards">
                 <div class="card-single">
                     <div>
-                        <h1> 4 </h1>
+                        <h1> <?php echo $count; ?> </h1>
                         <span> Active Bookings </span>
                     </div>      <!-- Active Booking -->
                     <div>
@@ -74,7 +111,7 @@
 
                 <div class="card-single">
                     <div>
-                        <h1> 20 </h1>
+                        <h1> <?php echo $customers; ?> </h1>
                         <span> Customers </span>
                     </div>      <!-- Customers -->
                     <div>
@@ -101,45 +138,43 @@
                                             <td> Date / Time </td>
                                             <td> Number of Guests </td>
                                             <td> Status </td>
+                                            <td>  </td>
                                         </tr>
                                     </thead>       <!-- headings for table -->
+
                                     <tbody>
-                                        <tr>
-                                            <td> Nathan Kress </td>
-                                            <td> Mar 30, 9:00am-12:00pm </td>
-                                            <td> +4 Guests </td>
-                                            <td>
-                                                <span class="status green"></span>
-                                                Ongoing
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td> Park Binnie </td>
-                                            <td> Mar 30, 12:00pm-3:00pm </td>
-                                            <td> +4 Guests </td>
-                                            <td>
-                                                <span class="status yellow"></span>
-                                                Scheduled
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td> Glory Brooks </td>
-                                            <td> Mar 30, 3:00pm-6:00pm </td>
-                                            <td> +4 Guests </td>
-                                            <td>
-                                                <span class="status red"></span>
-                                                Cancelled
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td> Kim Seon Ho </td>
-                                            <td> Mar 30, 6:00pm-9:00pm </td>
-                                            <td> +4 Guests </td>
-                                            <td>
-                                                <span class="status green"></span>
-                                                Ongoing
-                                            </td>
-                                        </tr>
+                                
+                                        <?php
+                                           for ($i = 0; $i < $count; $i++) { 
+                                        ?>
+                                                <tr>
+                                                    <td> <?php echo $names[$i]; ?> </td>
+                                                    <td> <?php echo  $date_time[$i] ?> </td>
+                                                    <td> <?php echo  $guest[$i] ?> Guest </td>
+                                                    <td>
+                                                        <span class='status green'></span> Ongoing
+                                                    </td>
+                                                    <td> 
+                                                        <div class='button_tash'>
+                                                            <form method="post">
+                                                                <input type="submit" name="del_button" value="Delete"/>
+                                                            </form>
+                                                        </div>
+                                                     </td>
+                                                    </tr>
+                                                
+                                                
+                                        <?php
+                                            }
+
+                                            if(isset($_POST['del_button'])) {
+                                                  echo "temp";
+                                            }
+
+                                            function testfun($index) {
+                                              
+                                            }
+                                        ?>
                                     </tbody>       <!-- booking summary for the day -->
                                 </table>
                             </div>      <!-- table-responsive -->
@@ -147,65 +182,43 @@
                     </div>      <!-- card -->
                 </div>      <!-- bookings -->
 
-
                 <div class="contacts">
                     <div class="card">
                         <div class="card-header">
                             <h3> Contacts </h3>
-
                             <button> See all <span class="las la-arrow-right"></span></button>
                         </div>      <!-- card-header -->
+                        
+                        <?php
+                             for ($i = 0; $i < $count; $i++) { 
+                                $contact = $numbers[$i];
 
-                        <div class="card-body">
-                            <div class="customer">
-                                <div class="info">
-                                    <div>
-                                        <h4> Nathan Kress </h4>
-                                        <small> +1 208-252-2636 </small>
-                                    </div>
-                                </div>
-                                <div class="contact">
-                                    <span class="las la-comment"></span>
-                                    <span class="las la-phone"></span>
-                                </div>
-                            </div>
-                            <div class="customer">
-                                <div class="info">
-                                    <div>
-                                        <h4> Park Binnie </h4>
-                                        <small> +82 10-596-5023 </small>
-                                    </div>
-                                </div>
-                                <div class="contact">
-                                    <span class="las la-comment"></span>
-                                    <span class="las la-phone"></span>
-                                </div>
-                            </div>
-                            <div class="customer">
-                                <div class="info">
-                                    <div>
-                                        <h4> Glory Brooks </h4>
-                                        <small> +1 419-551-2198 </small>
-                                    </div>
-                                </div>
-                                <div class="contact">
-                                    <span class="las la-comment"></span>
-                                    <span class="las la-phone"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="customer">
-                            <div class="info">
-                                <div>
-                                    <h4> Kim Seon Ho </h4>
-                                    <small> +1 201-142-4536 </small>
-                                </div>
-                            </div>
-                            <div class="contact">
-                                <span class="las la-comment"></span>
-                                <span class="las la-phone"></span>
-                            </div>
-                        </div><!-- contact person booking -->
+                                if ($contact != NULL || $contact != '') {
+
+                                ?>
+                                    
+                                        <div class='customer'>
+                                            <div class='info'>
+                                                <div>
+                                                    <h4> <?php echo $names[$i] ?> </h4>
+                                                    <small> <?php echo $contact ?> </small>
+                                                </div>
+                                            </div>
+                                            <div class='contact'>
+                                                <span class='las la-comment'></span>
+                                                <span class='las la-phone'></span>
+                                            </div>
+                                        </div>
+
+                        <?php 
+                                }
+                                
+                             }
+
+                        ?>
+                        <!-- contact person booking -->
+
+                        
                     </div>      <!-- card -->
                 </div>      <!-- contacts-card -->
             </div>      <!-- recent-grid-->
