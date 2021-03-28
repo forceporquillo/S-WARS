@@ -5,7 +5,6 @@ $res_username =$_SESSION['username'];
 $memberhsip_query = "SELECT membership FROM users WHERE username='$res_username'";
 $result = mysqli_query($db, $memberhsip_query);
 
-
 $mysqli = new mysqli('localhost','root','','bookingcalendar');
 if(isset($_GET['date'])){
     $date = $_GET['date'];
@@ -34,8 +33,8 @@ if(isset($_POST['submit'])){
         if($result->num_rows>0){
             $msg = "<div class='alert alert-danger'>Already Booked</div>";
         }else{
-            $stmt = $mysqli->prepare("INSERT INTO bookings (username,name, timeslot, email, date) VALUES (?,?,?,?,?)");
-            $stmt->bind_param('sssss', $res_username, $name, $timeslot, $email, $date);
+            $stmt = $mysqli->prepare("INSERT INTO bookings (date, name, timeslot, email) VALUES (?,?,?,?)");
+            $stmt->bind_param('ssss', $date, $name, $timeslot, $email);
             $stmt->execute();
             $msg = "<div class='alert alert-success'>Booking Successful</div>";
             $bookings[] = $timeslot;
@@ -155,12 +154,12 @@ function checkSlots($mysqli, $date){
                                     <input required type="email" class="form-control" name="email">
                                 </div>
                                 <div class="form-group">
-                                    <label for="">No. of Guests</label>
-                                    <input required type="guest" class="form-control" name="guest">
+                                    <label for="">No. of Guest</label>
+                                    <input required type="email" class="form-control" name="email">
                                 </div>
-                                 <div class="form-group">
+                                <div class="form-group">
                                     <label for="">Contact no.</label>
-                                    <input required type="number" class="form-control" name="number">
+                                    <input required type="email" class="form-control" name="email">
                                 </div>
                                 <div class="form-group pull-right">
                                     <button name="submit" type="submit" class="btn btn-primary">Submit</button>
