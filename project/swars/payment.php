@@ -19,27 +19,27 @@
           <div class="col-50">
             <h3>Billing Address</h3>
             <label class="custom-field one" for="fname">
-            <input type="text" id="fname" name="firstname" required value="John M. Doe">
+            <input type="text" id="fname" name="firstname">
                 <span class="placeholder"> Full Name</span></label>
             <label class="custom-field one" for="email">
-            <input type="text" id="email" name="email" required value="john@example.com">
+            <input type="text" id="email" name="email">
                 <span class="placeholder"> Email </span></label>
             <label class="custom-field one" for="adr">
-            <input type="text" id="adr" name="address" required value="542 W. 15th Street">
+            <input type="text" id="adr" name="address">
               <span class="placeholder"> Address </span></label>
             <label class="custom-field one" for="city">
-            <input type="text" id="city" name="city" required value="New York">
+            <input type="text" id="city" name="city">
               <span class="placeholder"> City </span></label>
 
             <div class="row">
               <div class="col-50">
                 <label class="custom-field one" for="state">
-                <input type="text" id="state" required name="state" value="NY">
+                <input type="text" id="state" required name="state">
                   <span class="placeholder"> State</span></label>
               </div>
               <div class="col-50">
                 <label class="custom-field one" for="zip">
-                <input type="text" id="zip" required name="zip" value="10001">
+                <input type="text" id="zip" required name="zip">
                   <span class="placeholder"> Zip </span></label>
               </div>
             </div>
@@ -55,23 +55,23 @@
               <i class="fa fa-cc-discover" style="color:#ffcc66;"></i>
             </div>
             <label class="custom-field one" for="cname">
-            <input type="text" id="cname" name="cardname" required value="John More Doe">
+            <input type="text" id="cname" name="cardname">
               <span class="placeholder"> Name on Card </span></label>
             <label class="custom-field one" for="ccnum">
-            <input type="text" id="ccnum" name="cardnumber" required value="1111-2222-3333-4444">
+            <input type="text" id="ccnum" name="cardnumber">
               <span class="placeholder"> Credit card number </span></label>
             <label class="custom-field one" for="expmonth">
-            <input type="text" id="expmonth" name="expmonth" required value="September">
+            <input type="text" id="expmonth" name="expmonth">
               <span class="placeholder"> Exp Month </span></label>
             <div class="row">
               <div class="col-50">
                 <label class="custom-field one" for="expyear">
-                <input type="text" id="expyear" name="expyear" required value="2018">
+                <input type="text" id="expyear" name="expyear">
                   <span class="placeholder"> Exp Year </span></label>
               </div>
               <div class="col-50">
                 <label class="custom-field one" for="cvv">
-                <input type="text" id="cvv" name="cvv" required value="352">
+                <input type="text" id="cvv" name="cvv">
                   <span class="placeholder"> CVV </span></label>
               </div>
             </div>
