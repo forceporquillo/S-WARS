@@ -199,8 +199,8 @@
                                                         <textarea class="form-control"></textarea>
                                                     </div>
                                                     <div class="form-group">
-                                                        <div class="swin-btn-wrap center"><a href="calendar.php" > <span><button class="swin-btn center form-submit" type="submit" name="book_user">Book Table</button></span></a></div>
-                                                    </div>
+                                                        <div class="swin-btn-wrap center"> <a href="calendar.php"> <span><button class="swin-btn center form-submit" type="submit" name="book_user">Book Table</button></span></a></div>
+                                                    </div>                         
                                                 </form>             <!-- End of Reservation -->
                                             </div>
                                         </div>
