@@ -12,6 +12,7 @@ $names = array();
 $date_time = array();
 $guest = array();
 $numbers = array();
+$ids = array();
 
 while ($row = $bookings->fetch_assoc()) {
     array_push($names, $row['name']);
@@ -20,6 +21,8 @@ while ($row = $bookings->fetch_assoc()) {
     $time = $row['timeslot'];
     $num = $row['contact'];
 
+
+    array_push($ids, $row['id']);
     $num = ($num == NULL) ? "091234567890" : $num;
     array_push($numbers, $num);
 
@@ -32,6 +35,24 @@ while ($row = $bookings->fetch_assoc()) {
     array_push($guest, $ge);
 
     $customers += $ge;
+}
+
+
+function deleteBookings($qId) {
+    $conn = new mysqli('localhost', 'root', '', 'bookingcalendar');
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    $q_params = "DELETE FROM bookings WHERE id=$qId";
+    
+    if($conn->query($q_params) === TRUE) {
+        echo "Record deleted successfully";
+    } else {
+        echo "Error deleting record: " . $conn->error;
+    }
+    // palagyan ng modal 
 }
 ?>
 
@@ -85,7 +106,7 @@ while ($row = $bookings->fetch_assoc()) {
 
             <div class="search-wrapper">
                 <span class="las la-search"></span>
-                 <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search bookings here...">
+                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search bookings here...">
             </div>      <!-- search-wrapper -->
 
             <div class="user-wrapper">
@@ -156,7 +177,15 @@ while ($row = $bookings->fetch_assoc()) {
                                                     </td>
                                                     <td>
                                                             <form action="admin.php" method="get">
-                                                                <button style="cursor:pointer;padding:8px;font-size:12px;border-radius:4px;background-color:#f15f2a;color:white;border:none"name="del_button">DELETE</button>
+                                                            <?php
+
+                                                                echo "
+                                                                    <button style='cursor:pointer;padding:8px;font-size:12px;border-radius:4px;background-color:#f15f2a;color:white;border:none
+                                                                        'name='del_button' value='$ids[$i]'>DELETE
+                                                                    </button>
+                                                                ";
+                                                            ?>
+                                                               
                                                             </form>
 
                                                      </td>
@@ -167,12 +196,9 @@ while ($row = $bookings->fetch_assoc()) {
                                             }
 
                                             if(isset($_GET['del_button'])) {
-                                                  echo "temp";
+                                                 deleteBookings($_GET['del_button']);
                                             }
 
-                                            function testfun($index) {
-
-                                            }
                                         ?>
                                     </tbody>       <!-- booking summary for the day -->
                                 </table>
