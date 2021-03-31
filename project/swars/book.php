@@ -5,7 +5,6 @@ $res_username =$_SESSION['username'];
 $memberhsip_query = "SELECT membership FROM users WHERE username='$res_username'";
 $result = mysqli_query($db, $memberhsip_query);
 
-
 $mysqli = new mysqli('localhost','root','','bookingcalendar');
 if(isset($_GET['date'])){
     $date = $_GET['date'];
@@ -26,6 +25,8 @@ if(isset($_GET['date'])){
 if(isset($_POST['submit'])){
     $name = $_POST['name'];
     $email = $_POST['email'];
+    $guest = $_POST['guest'];
+    $contact = $_POST['contact'];
     $timeslot = $_POST['timeslot'];
     $stmt = $mysqli->prepare("select * from bookings where date = ? AND timeslot=?");
     $stmt->bind_param('ss', $date, $timeslot);
@@ -34,8 +35,8 @@ if(isset($_POST['submit'])){
         if($result->num_rows>0){
             $msg = "<div class='alert alert-danger'>Already Booked</div>";
         }else{
-            $stmt = $mysqli->prepare("INSERT INTO bookings (username,name, timeslot, email, date) VALUES (?,?,?,?,?)");
-            $stmt->bind_param('sssss', $res_username, $name, $timeslot, $email, $date);
+            $stmt = $mysqli->prepare("INSERT INTO bookings (date, name, timeslot, email, guest, contact) VALUES (?,?,?,?,?,?)");
+            $stmt->bind_param('ssssss', $date, $name, $timeslot, $email, $guest, $contact);
             $stmt->execute();
             $msg = "<div class='alert alert-success'>Booking Successful</div>";
             $bookings[] = $timeslot;
@@ -154,10 +155,19 @@ function checkSlots($mysqli, $date){
                                     <label for="">Email</label>
                                     <input required type="email" class="form-control" name="email">
                                 </div>
+                                <div class="form-group">
+                                    <label for="">No. of Guest</label>
+                                    <input required type="text" class="form-control" name="guest">
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Contact no.</label>
+                                    <input required type="text" class="form-control" name="contact">
+                                </div>
                                 <div class="form-group pull-right">
                                     <button name="submit" type="submit" class="btn btn-primary">Submit</button>
                                 </div>
                             </form>
+
                         </div>
                     </div>
                 </div>

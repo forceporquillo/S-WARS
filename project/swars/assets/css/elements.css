@@ -2412,7 +2412,8 @@ ul.nav.nav-tabs {
         border-radius: 0;
         color: #9d9d9d;
         position: relative;
-        min-width: 40px; }
+        min-width: 40px;
+        }
         .swin-sc-contact-form .form-group .input-group .input-group-addon:after {
           content: '';
           position: absolute;

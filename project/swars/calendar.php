@@ -38,11 +38,11 @@ function build_calendar($month, $year) {
     $calendar = "<table class='table table-bordered'>";
     echo '<a href="Navigation.php"><i style="color:black;font-size:30px;margin-left:-50px;padding-top:20px;" class="fa fa-arrow-left"></i></a>';
     $calendar .= "<center><h2 style='margin-top:-25px;font-weight:bold'>$monthName $year</h2>";
-    $calendar.= "<a style='position:fixed;margin-left:-120px;margin-top:-40px;font-weight:bold;font-size:20px;padding-top:0;height:30px;width:30px;border:none;border-radius:50%;background-color:#f9b79f;color:white;' class='btn btn-xs btn-primary' href='?month=".date('m', mktime(0, 0, 0, $month-1, 1, $year))."&year=".date('Y', mktime(0, 0, 0, $month-1, 1, $year))."'>&#8249;</a> ";
+    $calendar.= "<a style='position:static;margin-left:1px;margin-top:-80px;font-weight:bold;font-size:20px;padding-top:0;height:30px;width:30px;border:none;border-radius:50%;background-color:#f9b79f;color:white;' class='btn btn-xs btn-primary' href='?month=".date('m', mktime(0, 0, 0, $month-1, 1, $year))."&year=".date('Y', mktime(0, 0, 0, $month-1, 1, $year))."'>&#8249;</a> ";
     
-    $calendar.= " <a style='padding: 5px 15px;border-radius:20px;border:none;background-color:#f9b79f' class='btn btn-xs btn-primary' href='?month=".date('m')."&year=".date('Y')."'>Current Month</a> ";
+    $calendar.= " <a style='margin-left:90px;padding: 5px 15px;border-radius:20px;border:none;background-color:#f9b79f' class='btn btn-xs btn-primary' href='?month=".date('m')."&year=".date('Y')."'>Current Month</a> ";
     
-    $calendar.= "<a style='position:fixed;margin-left:90px;margin-top:-40px;font-weight:bold;font-size:20px;padding-top:0;height:30px;width:30px;border:none;border-radius:50%;background-color:#f9b79f;color:white;' class='btn btn-xs btn-primary' href='?month=".date('m', mktime(0, 0, 0, $month+1, 1, $year))."&year=".date('Y', mktime(0, 0, 0, $month+1, 1, $year))."'>&#8250;</a></center><br>";
+    $calendar.= "<a style='position:static;margin-left:90px;margin-top:-80px;font-weight:bold;font-size:20px;padding-top:0;height:30px;width:30px;border:none;border-radius:50%;background-color:#f9b79f;color:white;' class='btn btn-xs btn-primary' href='?month=".date('m', mktime(0, 0, 0, $month+1, 1, $year))."&year=".date('Y', mktime(0, 0, 0, $month+1, 1, $year))."'>&#8250;</a></center><br>";
 
       $calendar .= "<tr>";
      // Create the calendar headers
@@ -130,63 +130,12 @@ function build_calendar($month, $year) {
 <html lang="en">
 <head>
     <title>Calendar</title>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
-       @media only screen and (max-width: 760px),
-        (min-device-width: 802px) and (max-device-width: 1020px) {
-            table, thead, tbody, th, td, tr {
-                display: block;
-            }
-            
-            .empty { display: none;}
-            th {
-                position: absolute;
-                top: -9999px;
-                left: -9999px;
-            }
-            tr { border: 1px solid #ccc;}
-            td {
-                border: none;
-                border-bottom: 1px solid #eee;
-                position: relative;
-                padding-left: 50%;
-            }
-            td:nth-of-type(1):before {content: "Sunday";}
-            td:nth-of-type(2):before {content: "Monday";}
-            td:nth-of-type(3):before {content: "Tuesday";}
-            td:nth-of-type(4):before {content: "Wednesday";}
-            td:nth-of-type(5):before {content: "Thursday";}
-            td:nth-of-type(6):before {content: "Friday";}
-            td:nth-of-type(7):before {content: "Saturday";}
-        }
-        @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-            body {
-                padding: 0;
-                margin: 0;
-            }
-        }
-        @media only screen and (min-device-width: 802px) and (max-device-width: 1020px) {
-            body {
-                width: 495px;
-            }
-        }
-        @media (min-width:641px) {
-            table {
-                table-layout: fixed;
-            }
-            td {
-                width: 33%;
-            }
-        }
-        .row{margin-top: 20px;}
-        .today{background:#fff0b3;}
-        body {
-            font-family: Montserrat, sans-serif;
-        }
-
-    </style>
+    <link rel="stylesheet" href="calendar.css">
 </head>
 
 <body>
@@ -205,12 +154,81 @@ function build_calendar($month, $year) {
                     echo build_calendar($month,$year);
                 ?>
                 <div class="form-group">
-                    <button type="submit" name="disp_reserve">Display Reservation</button>
+                    <form action="calendar.php" method="get">
+                    <button type="submit" name="reserve">Display Reservation</button>
+                    </form>
                 </div>
-                    
+
+                <?php
+                if(isset($_GET['reserve'])) {
+                    echo '<script type="text/javascript">swal("AWW", "You have no reservations yet!", "warning");</script>'; //if user has no reservations yet
+
+                }
+                ?>
             </div>
         </div>
     </div>
+    <section class="main-content">
+        <div class="container">
+            <h1>Reservations</h1>
+            <br>
+            <table class="table-1">
+                <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Guests</th>
+                    <th>Contact</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>2021-03-31</td>
+                    <td>18:00-21:00</td>
+                    <td>Jeanie</td>
+                    <td>limborock15@gmail.com</td>
+                    <td>3</td>
+                    <td> 09167642651 </td>
+                    <td>
+                        <form action="calendar.php" method="get">
+                            <button style="cursor:pointer;padding:8px;font-size:12px;border-radius:4px;background-color:#ff6666;color:white;border:none"name="del_button">CANCEL</button>
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2021-03-31</td>
+                    <td>18:00-21:00</td>
+                    <td>Jeanie</td>
+                    <td>limborock15@gmail.com</td>
+                    <td>3</td>
+                    <td> 09167642651 </td>
+                    <td>
+                        <form action="calendar.php" method="get">
+                            <button style="cursor:pointer;padding:8px;font-size:12px;border-radius:4px;background-color:#ff6666;color:white;border:none"name="del_button">CANCEL</button>
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2021-03-31</td>
+                    <td>18:00-21:00</td>
+                    <td>Jeanie</td>
+                    <td>limborock15@gmail.com</td>
+                    <td>3</td>
+                    <td> 09167642651 </td>
+                    <td>
+                        <form action="calendar.php" method="get">
+                            <button style="cursor:pointer;padding:8px;font-size:12px;border-radius:4px;background-color:#ff6666;color:white;border:none"name="del_button">CANCEL</button>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
 </body>
 
 </html>

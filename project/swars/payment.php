@@ -34,12 +34,12 @@
             <div class="row">
               <div class="col-50">
                 <label class="custom-field one" for="state">
-                <input type="text" id="state" required name="state" value="NY">
+                <input type="text" id="state" name="state" required value="NY">
                   <span class="placeholder"> State</span></label>
               </div>
               <div class="col-50">
                 <label class="custom-field one" for="zip">
-                <input type="text" id="zip" required name="zip" value="10001">
+                <input type="text" id="zip" name="zip" required value="10001">
                   <span class="placeholder"> Zip </span></label>
               </div>
             </div>
