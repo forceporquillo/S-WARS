@@ -166,7 +166,7 @@
                                                         </div>
                                                         <div class="input-group">
                                                             <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
-                                                            <input type="text" name="email" placeholder="Email" required="" class="form-control">
+                                                            <input type="email" name="email" placeholder="Email" required="" class="form-control">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
@@ -174,7 +174,7 @@
                                                             <div class="input-group-addon">
                                                                 <div class="fa fa-phone"></div>
                                                             </div>
-                                                            <input type="number" placeholder="Phone" required="" name="phone" class="form-control">
+                                                            <input type="tel" required="" placeholder="Phone" pattern="[0-9]{4}[0-9]{3}[0-9]{4}" name="phone" class="form-control">
                                                         </div>
                                                         <div class="input-group">
                                                             <div class="input-group-addon"><i class="fa fa-male"></i></div>
@@ -194,9 +194,6 @@
                                                             ?>
                                                             </select>
                                                         </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <textarea class="form-control"></textarea>
                                                     </div>
                                                     <div class="form-group">
                                                         <div class="swin-btn-wrap center"> <a href="calendar.php"> <span><button class="swin-btn center form-submit" type="submit" name="book_user">Book Table</button></span></a></div>

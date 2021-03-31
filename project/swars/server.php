@@ -104,13 +104,6 @@ if (isset($_POST['login_user'])) {
 }
 ?>
 <?php
-session_start();
-
-if(isset($_SESSION['logged_in'])) {
-    header('location: admin.php');
-}
-?>
-<?php
 // LOGIN ADMIN
 static $username = 'admin';
 static $password = 'swarz';

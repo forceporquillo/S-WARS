@@ -18,7 +18,7 @@ while ($row = $bookings->fetch_assoc()) {
 
     $date = $row['date'];
     $time = $row['timeslot'];
-    $num = $row['contact_number'];
+    $num = $row['contact'];
 
     $num = ($num == NULL) ? "091234567890" : $num;
     array_push($numbers, $num);
@@ -27,7 +27,7 @@ while ($row = $bookings->fetch_assoc()) {
 
     array_push($date_time, $dt);
 
-    $ge = $row['number_guest'];
+    $ge = $row['guest'];
     $ge = ($ge == NULL) ? 5 : $ge;
     array_push($guest, $ge);
 
@@ -85,7 +85,7 @@ while ($row = $bookings->fetch_assoc()) {
 
             <div class="search-wrapper">
                 <span class="las la-search"></span>
-                <input type="search" placeholder="Search here">
+                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search bookings here...">
             </div>      <!-- search-wrapper -->
 
             <div class="user-wrapper">
@@ -131,48 +131,47 @@ while ($row = $bookings->fetch_assoc()) {
 
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table>
+                                <table id="myTable">
                                     <thead>
                                         <tr>
                                             <td> Name </td>
                                             <td> Date / Time </td>
                                             <td> Number of Guests </td>
                                             <td> Status </td>
-                                            <td>  </td>
+                                            <td> Action </td>
                                         </tr>
                                     </thead>       <!-- headings for table -->
 
                                     <tbody>
                                 
                                         <?php
-                                           for ($i = 0; $i < $count; $i++) { 
+                                           for ($i = 0; $i < $count; $i++) {
                                         ?>
                                                 <tr>
                                                     <td> <?php echo $names[$i]; ?> </td>
                                                     <td> <?php echo  $date_time[$i] ?> </td>
-                                                    <td> <?php echo  $guest[$i] ?> Guest </td>
+                                                    <td> <?php echo  $guest[$i] ?> Guest/s </td>
                                                     <td>
-                                                        <span class='status green'></span> Ongoing
+                                                        <span class='status green'></span>Ongoing
                                                     </td>
-                                                    <td> 
-                                                        <div class='button_tash'>
-                                                            <form method="post">
-                                                                <input type="submit" name="del_button" value="Delete"/>
+                                                    <td>
+                                                            <form action="admin.php" method="get">
+                                                                <button style="cursor:pointer;padding:8px;font-size:12px;border-radius:4px;background-color:#f15f2a;color:white;border:none"name="del_button">DELETE</button>
                                                             </form>
-                                                        </div>
+
                                                      </td>
                                                     </tr>
-                                                
-                                                
+
+
                                         <?php
                                             }
 
-                                            if(isset($_POST['del_button'])) {
+                                            if(isset($_GET['del_button'])) {
                                                   echo "temp";
                                             }
 
                                             function testfun($index) {
-                                              
+
                                             }
                                         ?>
                                     </tbody>       <!-- booking summary for the day -->
@@ -224,5 +223,25 @@ while ($row = $bookings->fetch_assoc()) {
             </div>      <!-- recent-grid-->
         </main>
     </div>      <!-- main-content -->
+    <script>
+        function myFunction() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
 </body>
 </html>
