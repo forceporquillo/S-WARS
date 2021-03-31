@@ -228,7 +228,7 @@ function build_calendar($month, $year) {
             </table>
         </div>
     </section>
-
+  
 </body>
 
 </html>
