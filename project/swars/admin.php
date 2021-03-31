@@ -85,7 +85,7 @@ while ($row = $bookings->fetch_assoc()) {
 
             <div class="search-wrapper">
                 <span class="las la-search"></span>
-                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search bookings here...">
+                 <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search bookings here...">
             </div>      <!-- search-wrapper -->
 
             <div class="user-wrapper">
