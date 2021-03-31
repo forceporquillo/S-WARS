@@ -5,6 +5,10 @@ $res_username =$_SESSION['username'];
 $memberhsip_query = "SELECT membership FROM users WHERE username='$res_username'";
 $result = mysqli_query($db, $memberhsip_query);
 
+
+
+echo $_SESSION['username'];
+
 $mysqli = new mysqli('localhost','root','','bookingcalendar');
 if(isset($_GET['date'])){
     $date = $_GET['date'];
@@ -30,13 +34,18 @@ if(isset($_POST['submit'])){
     $timeslot = $_POST['timeslot'];
     $stmt = $mysqli->prepare("select * from bookings where date = ? AND timeslot=?");
     $stmt->bind_param('ss', $date, $timeslot);
+
+    // need naten naka link to sa may acount in order para ma display naten yung 
+    // nireserve nya even if ibang email gamit nya or name.
+
+    $account = $_SESSION['username']; 
     if($stmt->execute()){
         $result = $stmt->get_result();
         if($result->num_rows>0){
             $msg = "<div class='alert alert-danger'>Already Booked</div>";
         }else{
-            $stmt = $mysqli->prepare("INSERT INTO bookings (date, name, timeslot, email, guest, contact) VALUES (?,?,?,?,?,?)");
-            $stmt->bind_param('ssssss', $date, $name, $timeslot, $email, $guest, $contact);
+            $stmt = $mysqli->prepare("INSERT INTO bookings (date, name, timeslot, email, guest, contact, account) VALUES (?,?,?,?,?,?,?)");
+            $stmt->bind_param('sssssss', $date, $name, $timeslot, $email, $guest, $contact, $account);
             $stmt->execute();
             $msg = "<div class='alert alert-success'>Booking Successful</div>";
             $bookings[] = $timeslot;
@@ -157,7 +166,7 @@ function checkSlots($mysqli, $date){
                                 </div>
                                 <div class="form-group">
                                     <label for="">No. of Guest</label>
-                                    <input required type="text" class="form-control" name="guest">
+                                    <input required type="text" class="form-control" name="guest" min="1" max="5" > 
                                 </div>
                                 <div class="form-group">
                                     <label for="">Contact no.</label>
