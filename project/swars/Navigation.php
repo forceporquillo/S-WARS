@@ -178,7 +178,10 @@
                                                         </div>
                                                         <div class="input-group">
                                                             <div class="input-group-addon"><i class="fa fa-male"></i></div>
-                                                            <select type="text" placeholder="People" name="people" class="form-control">
+                                                            <form method="get">
+                                                                <select type="text" placeholder="People" name="people" value='1' class="form-control">
+                                                            </form>
+                                                            
                                                             <?php 
                                                                 $db = mysqli_connect('localhost', 'root', '', 'registration');
                                                                 $res_username =$_SESSION['username']; ;
@@ -190,13 +193,24 @@
                                                                 for ($i = 1; $i <= $option; $i++) {
                                                                     echo "<option>$i Person</option>";
                                                                 }
-                                             
+                                                                
+                                                                // pa send sa session yung number of guest
+                                                                // tas email para di redundant yung inputs
+                                                                // then automatic idisplay na sya don sa modal field
+                                                                // nakaka lusot kasi yung number of guest.
+
+                                                                if(isset($_GET['book_user'])) {
+                                                                    $_SESSION['people'] = $_GET['people'];
+                                                                } 
                                                             ?>
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <div class="swin-btn-wrap center"> <a href="calendar.php"> <span><button class="swin-btn center form-submit" type="submit" name="book_user">Book Table</button></span></a></div>
+                                                        <form method="get">
+                                                             <div class="swin-btn-wrap center"> <a href="calendar.php"> <span><button class="swin-btn center form-submit" type="submit" name="book_user">Book Table</button></span></a></div>
+                                                        </form>
+                                                       
                                                     </div>                         
                                                 </form>             <!-- End of Reservation -->
                                             </div>
