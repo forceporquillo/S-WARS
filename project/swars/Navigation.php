@@ -184,7 +184,7 @@
                                                             
                                                             <?php 
                                                                 $db = mysqli_connect('localhost', 'root', '', 'registration');
-                                                                $res_username =$_SESSION['username']; ;
+                                                                $res_username =$_SESSION['username'];
                                                                 $memberhsip_query = "SELECT membership FROM users WHERE username='$res_username'";
                                                                 $result = mysqli_query($db, $memberhsip_query);
                                                                 $member = mysqli_fetch_assoc($result);

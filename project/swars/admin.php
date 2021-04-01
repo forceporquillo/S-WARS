@@ -26,7 +26,7 @@ while ($row = $bookings->fetch_assoc()) {
     $num = ($num == NULL) ? "091234567890" : $num;
     array_push($numbers, $num);
 
-    $dt = $date . '-' . $time;
+    $dt = $date . ' - ' . $time;
 
     array_push($date_time, $dt);
 
@@ -191,9 +191,13 @@ function deleteBookings($qId) {
                                             }
 
                                             if(isset($_GET['del_button'])) {
-                                                 deleteBookings($_GET['del_button']);
+                                                deleteBookings($_GET['del_button']);                                            
                                             }
 
+
+                                            
+
+                                           
                                         ?>
                                     </tbody>       <!-- booking summary for the day -->
                                 </table>
@@ -235,6 +239,17 @@ function deleteBookings($qId) {
                                 
                              }
 
+                             $current = "2021-03-31 12:00 - 15:00";
+                             $future = "2021-02-31 12:00 - 15:00";
+
+                             $temp = strtotime($current);
+                             $temp2 = strtotime($future);
+
+                             if ($temp < $temp2) {
+                                echo "Yes";
+                             } else {
+                                echo "No";
+                             }
                         ?>
                         <!-- contact person booking -->
 
