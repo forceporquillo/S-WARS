@@ -7,8 +7,6 @@ $result = mysqli_query($db, $memberhsip_query);
 
 
 
-echo $_SESSION['username'];
-
 $mysqli = new mysqli('localhost','root','','bookingcalendar');
 if(isset($_GET['date'])){
     $date = $_GET['date'];
@@ -38,7 +36,7 @@ if(isset($_POST['submit'])){
     // need naten naka link to sa may acount in order para ma display naten yung 
     // nireserve nya even if ibang email gamit nya or name.
 
-    $account = $_SESSION['username']; 
+    $account = $_SESSION['username'];
     if($stmt->execute()){
         $result = $stmt->get_result();
         if($result->num_rows>0){
@@ -158,29 +156,28 @@ function checkSlots($mysqli, $date){
                                 </div>
                                 <div class="form-group">
                                     <label for="">Name</label>
-                                    <input required type="text" class="form-control" name="name">
+                                    <input required type="text" class="form-control" name="name" value=<?php echo $_SESSION['username'] ?>>
                                 </div>
                                 <div class="form-group">
                                     <label for="">Email</label>
-                                    <input required type="email" class="form-control" name="email">
+                                    <input required type="email" class="form-control" name="email" value=<?php echo $_SESSION['email']?>>
                                 </div>
                                 <div class="form-group">
                                     <label for="">No. of Guest</label>
-                                    <input required type="text" class="form-control" name="guest" min="1" max="5" > 
+                                    <input required type="text" class="form-control" name="guest" min="1" max="5" value=<?php echo $_SESSION['people']?> >
                                 </div>
                                 <div class="form-group">
                                     <label for="">Contact no.</label>
-                                    <input required type="text" class="form-control" name="contact">
+                                    <input required type="text" class="form-control" name="contact" value=<?php echo $_SESSION['phone']?>>
                                 </div>
                                 <div class="form-group pull-right">
                                     <button name="submit" type="submit" class="btn btn-primary">Submit</button>
                                 </div>
                             </form>
-
                         </div>
                     </div>
                 </div>
-                
+
             </div>
 
         </div>

@@ -48,11 +48,12 @@ function deleteBookings($qId) {
     $q_params = "DELETE FROM bookings WHERE id=$qId";
     
     if($conn->query($q_params) === TRUE) {
-        echo "Record deleted successfully";
+        echo '<script type="text/javascript">if(!swal("Success!", "Record Successfully Deleted!", "success"));{
+            window.location.href("admin.php") 
+        }</script>';
     } else {
         echo "Error deleting record: " . $conn->error;
     }
-    // palagyan ng modal 
 }
 ?>
 
@@ -61,6 +62,7 @@ function deleteBookings($qId) {
 <head>
     <meta charset="UTF-8">
     <title> S-WARS Admin Page </title>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
     <link rel="stylesheet" href="admin_styles.css">
 </head>
@@ -180,8 +182,8 @@ function deleteBookings($qId) {
                                                             <?php
 
                                                                 echo "
-                                                                    <button style='cursor:pointer;padding:8px;font-size:12px;border-radius:4px;background-color:#f15f2a;color:white;border:none
-                                                                        'name='del_button' value='$ids[$i]'>DELETE
+                                                                    <button style='cursor:pointer;padding:8px;font-size:12px;border-radius:4px;background-color:#f15f2a;color:white;border:none'
+                                                                    name='del_button' type='submit' onclick='return confirm(`Are you sure you want to delete?`)' value='$ids[$i]'>DELETE
                                                                     </button>
                                                                 ";
                                                             ?>
