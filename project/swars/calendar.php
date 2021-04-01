@@ -11,8 +11,12 @@ CREATE TABLE `bookings` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1
 
 */
+
+session_start();
+
+// echo $_SESSION['username'];
+
 function build_calendar($month, $year) {
-    
     $mysqli = new mysqli('localhost','root','','bookingcalendar');
      // Create array containing abbreviations of days of week.
      $daysOfWeek = array('Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday');
@@ -108,8 +112,9 @@ function build_calendar($month, $year) {
      $calendar .= "</tr>";
      $calendar .= "</table>";
      return $calendar;
-}
+    }
 
+    // TODO: FIX
     function checkSlots($mysqli, $date){
         $stmt = $mysqli->prepare("select * from bookings where date = ?");
         $stmt->bind_param('s',$date);
@@ -125,8 +130,32 @@ function build_calendar($month, $year) {
         }
         return $totalbookings;
     }
-?>
 
+    $account = $_SESSION['username'];
+
+    $db = mysqli_connect('localhost','root','','bookingcalendar');
+    $query = "SELECT * FROM bookings WHERE account = '$account'";
+
+    $test = mysqli_query($db, $query);
+    $count = mysqli_num_rows($test);
+    // function displayOrderById() {
+    //     // need naka link sa may account
+       
+    //    // gettype($test);
+
+    //     if ($count > 0) {
+    //      while($row = $test->fetch_assoc()) {
+    //        // echo "id: " . $row["id"]. " - Name: " . $row["date"]. " " . $row["name"]. "<br>";
+    //         }
+    //     } else {
+    //         echo "empty";
+    //     }
+
+    //     return $test->fetch_assoc();
+    // }
+
+    // var_dump(displayOrderById());
+?>
 <html lang="en">
 <head>
     <title>Calendar</title>
@@ -137,7 +166,6 @@ function build_calendar($month, $year) {
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="calendar.css">
 </head>
-
 <body>
     <div class="container">
         <div class="row">
@@ -158,16 +186,8 @@ function build_calendar($month, $year) {
                     <button type="submit" name="reserve">Display Reservation</button>
                     </form>
                 </div>
-
-                <?php
-                if(isset($_GET['reserve'])) {
-                    echo '<script type="text/javascript">swal("AWW", "You have no reservations yet!", "warning");</script>'; //if user has no reservations yet
-
-                }
-                ?>
             </div>
         </div>
-    </div>
     <section class="main-content">
         <div class="container">
             <h1>Reservations</h1>
@@ -186,49 +206,35 @@ function build_calendar($month, $year) {
                 </thead>
                 <tbody>
                 <tr>
-                    <td>2021-03-31</td>
-                    <td>18:00-21:00</td>
-                    <td>Jeanie</td>
-                    <td>limborock15@gmail.com</td>
-                    <td>3</td>
-                    <td> 09167642651 </td>
-                    <td>
-                        <form action="calendar.php" method="get">
-                            <button style="cursor:pointer;padding:8px;font-size:12px;border-radius:4px;background-color:#ff6666;color:white;border:none"name="del_button">CANCEL</button>
-                        </form>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2021-03-31</td>
-                    <td>18:00-21:00</td>
-                    <td>Jeanie</td>
-                    <td>limborock15@gmail.com</td>
-                    <td>3</td>
-                    <td> 09167642651 </td>
-                    <td>
-                        <form action="calendar.php" method="get">
-                            <button style="cursor:pointer;padding:8px;font-size:12px;border-radius:4px;background-color:#ff6666;color:white;border:none"name="del_button">CANCEL</button>
-                        </form>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2021-03-31</td>
-                    <td>18:00-21:00</td>
-                    <td>Jeanie</td>
-                    <td>limborock15@gmail.com</td>
-                    <td>3</td>
-                    <td> 09167642651 </td>
-                    <td>
-                        <form action="calendar.php" method="get">
-                            <button style="cursor:pointer;padding:8px;font-size:12px;border-radius:4px;background-color:#ff6666;color:white;border:none"name="del_button">CANCEL</button>
-                        </form>
-                    </td>
-                </tr>
+                <?php
+                if(isset($_GET['reserve'])) {
+                    if ($count > 0){
+                    while($row = $test->fetch_assoc()) {
+                ?>
+                            <td><?php echo $row["date"] ?></td>
+                            <td><?php echo $row["timeslot"] ?></td>
+                            <td><?php echo $row["name"] ?></td>
+                            <td><?php echo $row["email"] ?></td>
+                            <td><?php echo $row["guest"] ?></td>
+                            <td><?php echo $row["contact"] ?></td>
+                            <td>
+                                <form action='calendar.php' method='get'>
+                                    <button style='cursor:pointer;padding:8px;font-size:12px;border-radius:4px;background-color:#ff6666;color:white;border:none'name='del_button'>CANCEL</button>
+                                </form>
+                            </td>
+                        </tr>
+                <?php
+                        }
+                    }
+                else {
+                    //if user has no reservation yet
+                    echo '<script type="text/javascript">swal("AWW", "You have no reservations yet!", "warning");</script>';
+                    }
+                }
+                ?>
                 </tbody>
             </table>
         </div>
     </section>
-
 </body>
-
 </html>

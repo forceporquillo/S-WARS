@@ -12,6 +12,7 @@ $names = array();
 $date_time = array();
 $guest = array();
 $numbers = array();
+$ids = array();
 
 while ($row = $bookings->fetch_assoc()) {
     array_push($names, $row['name']);
@@ -20,6 +21,8 @@ while ($row = $bookings->fetch_assoc()) {
     $time = $row['timeslot'];
     $num = $row['contact'];
 
+
+    array_push($ids, $row['id']);
     $num = ($num == NULL) ? "091234567890" : $num;
     array_push($numbers, $num);
 
@@ -33,6 +36,25 @@ while ($row = $bookings->fetch_assoc()) {
 
     $customers += $ge;
 }
+
+
+function deleteBookings($qId) {
+    $conn = new mysqli('localhost', 'root', '', 'bookingcalendar');
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    $q_params = "DELETE FROM bookings WHERE id=$qId";
+    
+    if($conn->query($q_params) === TRUE) {
+        echo '<script type="text/javascript">if(!swal("Success!", "Record Successfully Deleted!", "success"));{
+            window.location.href("admin.php") 
+        }</script>';
+    } else {
+        echo "Error deleting record: " . $conn->error;
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -40,6 +62,7 @@ while ($row = $bookings->fetch_assoc()) {
 <head>
     <meta charset="UTF-8">
     <title> S-WARS Admin Page </title>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
     <link rel="stylesheet" href="admin_styles.css">
 </head>
@@ -156,7 +179,15 @@ while ($row = $bookings->fetch_assoc()) {
                                                     </td>
                                                     <td>
                                                             <form action="admin.php" method="get">
-                                                                <button style="cursor:pointer;padding:8px;font-size:12px;border-radius:4px;background-color:#f15f2a;color:white;border:none"name="del_button">DELETE</button>
+                                                            <?php
+
+                                                                echo "
+                                                                    <button style='cursor:pointer;padding:8px;font-size:12px;border-radius:4px;background-color:#f15f2a;color:white;border:none'
+                                                                    name='del_button' type='submit' onclick='return confirm(`Are you sure you want to delete?`)' value='$ids[$i]'>DELETE
+                                                                    </button>
+                                                                ";
+                                                            ?>
+                                                               
                                                             </form>
 
                                                      </td>
@@ -167,12 +198,9 @@ while ($row = $bookings->fetch_assoc()) {
                                             }
 
                                             if(isset($_GET['del_button'])) {
-                                                  echo "temp";
+                                                 deleteBookings($_GET['del_button']);
                                             }
 
-                                            function testfun($index) {
-
-                                            }
                                         ?>
                                     </tbody>       <!-- booking summary for the day -->
                                 </table>
