@@ -131,13 +131,14 @@ function build_calendar($month, $year) {
         return $totalbookings;
     }
 
-    $account = $_SESSION['username'];
+     $account = $_SESSION['username'];
 
     $db = mysqli_connect('localhost','root','','bookingcalendar');
     $query = "SELECT * FROM bookings WHERE account = '$account'";
 
     $test = mysqli_query($db, $query);
     $count = mysqli_num_rows($test);
+
     // function displayOrderById() {
     //     // need naka link sa may account
        
@@ -155,7 +156,10 @@ function build_calendar($month, $year) {
     // }
 
     // var_dump(displayOrderById());
+
+    
 ?>
+
 <html lang="en">
 <head>
     <title>Calendar</title>
@@ -166,6 +170,12 @@ function build_calendar($month, $year) {
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="calendar.css">
 </head>
+<style>
+    .swal-icon img {
+        max-width: 30%;
+        max-height: 30%;
+    }
+</style>
 <body>
     <div class="container">
         <div class="row">
@@ -186,8 +196,12 @@ function build_calendar($month, $year) {
                     <button type="submit" name="reserve">Display Reservation</button>
                     </form>
                 </div>
+
+              
             </div>
         </div>
+    </div>
+
     <section class="main-content">
         <div class="container">
             <h1>Reservations</h1>
@@ -205,12 +219,12 @@ function build_calendar($month, $year) {
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
                 <?php
                 if(isset($_GET['reserve'])) {
                     if ($count > 0){
-                    while($row = $test->fetch_assoc()) {
-                ?>
+                        while($row = $test->fetch_assoc()) {
+                            ?>
+                         <tr>
                             <td><?php echo $row["date"] ?></td>
                             <td><?php echo $row["timeslot"] ?></td>
                             <td><?php echo $row["name"] ?></td>
@@ -223,12 +237,12 @@ function build_calendar($month, $year) {
                                 </form>
                             </td>
                         </tr>
-                <?php
+                            <?php
                         }
                     }
-                else {
-                    //if user has no reservation yet
-                    echo '<script type="text/javascript">swal("AWW", "You have no reservations yet!", "warning");</script>';
+                    else {
+                        //if user has no reservation yet
+                        echo '<script type="text/javascript">swal("AWW", "You have no reservations yet!", "pics/aww.png");</script>';
                     }
                 }
                 ?>
@@ -236,5 +250,7 @@ function build_calendar($month, $year) {
             </table>
         </div>
     </section>
+  
 </body>
+
 </html>

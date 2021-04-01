@@ -166,7 +166,7 @@
                                                         </div>
                                                         <div class="input-group">
                                                             <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
-                                                            <input type="email" id="email" name="email" placeholder="Email" required="" class="form-control" >
+                                                            <input type="email" id="email" name="email" placeholder="Email" required="" class="form-control">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
@@ -174,13 +174,14 @@
                                                             <div class="input-group-addon">
                                                                 <div class="fa fa-phone"></div>
                                                             </div>
-                                                            <input type="tel" required="" id="phone" placeholder="Phone" pattern="[0-9]{4}[0-9]{3}[0-9]{4}" name="phone" class="form-control">
+                                                            <input type="tel" id="phone" required="" placeholder="Phone" pattern="[0-9]{4}[0-9]{3}[0-9]{4}" name="phone" class="form-control">
                                                         </div>
                                                         <div class="input-group">
                                                             <div class="input-group-addon"><i class="fa fa-male"></i></div>
-
-                                                                <select type="text" id="people" placeholder="People" name="people" class="form-control">
-
+                                                            <form method="get">
+                                                                <select type="text" placeholder="People" id="people" name="people" class="form-control">
+                                                            </form>
+                                                            
                                                             <?php 
                                                                 $db = mysqli_connect('localhost', 'root', '', 'registration');
                                                                 $res_username =$_SESSION['username']; ;
@@ -200,7 +201,7 @@
 
                                                                 if(isset($_GET['book_user'])) {
                                                                     $_SESSION['people'] = $_GET['people'];
-                                                                }
+                                                                } 
                                                             ?>
                                                             </select>
                                                         </div>
@@ -209,8 +210,8 @@
                                                         <form method="get">
                                                              <div class="swin-btn-wrap center"> <a href="calendar.php"> <span><button class="swin-btn center form-submit" type="submit" name="book_user">Book Table</button></span></a></div>
                                                         </form>
-
-                                                    </div>
+                                                       
+                                                    </div>                         
                                                 </form>             <!-- End of Reservation -->
                                             </div>
                                         </div>
@@ -219,17 +220,6 @@
                             </div>
 
                     </div>
-                    <?php
-                    if(isset($_POST['book_user'])) {
-                        session_start();
-                        $_SESSION['sent'] = true;
-                        $_SESSION['username'] = $_POST['username'];
-                        $_SESSION['email'] = $_POST['email'];
-                        $_SESSION['phone'] = $_POST['phone'];
-                        $_SESSION['people'] = $_POST['people'];
-                        header('location: book.php');
-                    }
-                    ?>
                     <div class="section">
                         <section class="product-sesction-03"id="menu">
                             <div class="container">

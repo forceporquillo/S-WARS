@@ -54,6 +54,7 @@ function deleteBookings($qId) {
     } else {
         echo "Error deleting record: " . $conn->error;
     }
+    // palagyan ng modal 
 }
 ?>
 
@@ -79,14 +80,6 @@ function deleteBookings($qId) {
                 <li>
                     <a href="" class="active"> <span class="las la-home"></span>
                         <span>Dashboard </span></a>
-                </li>
-                <li>
-                    <a href="" > <span class="las la-calendar-day"></span>
-                        <span>Calendar</span></a>
-                </li>
-                <li>
-                    <a href=""> <span class="las la-book-open"></span>
-                        <span>Booking</span></a>
                 </li>
                 <li>
                     <a style="margin-top:300px;" href="notification.php?logout='1'" onclick="return confirm('Are you sure you want to logout?')"><span class="las la-arrow-circle-left"></span>
@@ -182,8 +175,8 @@ function deleteBookings($qId) {
                                                             <?php
 
                                                                 echo "
-                                                                    <button style='cursor:pointer;padding:8px;font-size:12px;border-radius:4px;background-color:#f15f2a;color:white;border:none'
-                                                                    name='del_button' type='submit' onclick='return confirm(`Are you sure you want to delete?`)' value='$ids[$i]'>DELETE
+                                                                    <button style='cursor:pointer;padding:8px;font-size:12px;border-radius:4px;background-color:#f15f2a;color:white;border:none
+                                                                        'name='del_button' onclick='return confirm(`Are you sure you want to delete?`)' value='$ids[$i]'>DELETE
                                                                     </button>
                                                                 ";
                                                             ?>
