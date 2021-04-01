@@ -156,19 +156,19 @@ function checkSlots($mysqli, $date){
                                 </div>
                                 <div class="form-group">
                                     <label for="">Name</label>
-                                    <input required type="text" class="form-control" name="name" value=<?php echo $_SESSION['username'] ?>>
+                                    <input required type="text" class="form-control" name="name" value=<?php echo $_SESSION['username'] ?>
                                 </div>
                                 <div class="form-group">
                                     <label for="">Email</label>
-                                    <input required type="email" class="form-control" name="email" value=<?php echo $_SESSION['email']?>>
+                                    <input required type="email" class="form-control" name="email" value=<?php echo $_SESSION['email']?>
                                 </div>
                                 <div class="form-group">
                                     <label for="">No. of Guest</label>
-                                    <input required type="text" class="form-control" name="guest" min="1" max="5" value=<?php echo $_SESSION['people']?> >
+                                    <input required type="text" class="form-control" name="guest" min="1" max="5" value=<?php echo $_SESSION['people']?> 
                                 </div>
                                 <div class="form-group">
                                     <label for="">Contact no.</label>
-                                    <input required type="text" class="form-control" name="contact" value=<?php echo $_SESSION['phone']?>>
+                                    <input required type="text" class="form-control" name="contact" value=<?php echo $_SESSION['phone'] ?>
                                 </div>
                                 <div class="form-group pull-right">
                                     <button name="submit" type="submit" class="btn btn-primary">Submit</button>

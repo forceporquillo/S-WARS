@@ -210,7 +210,7 @@ function build_calendar($month, $year) {
                 if(isset($_GET['reserve'])) {
                     if ($count > 0){
                     while($row = $test->fetch_assoc()) {
-                ?>
+                ?>          
                             <td><?php echo $row["date"] ?></td>
                             <td><?php echo $row["timeslot"] ?></td>
                             <td><?php echo $row["name"] ?></td>
@@ -219,18 +219,44 @@ function build_calendar($month, $year) {
                             <td><?php echo $row["contact"] ?></td>
                             <td>
                                 <form action='calendar.php' method='get'>
-                                    <button style='cursor:pointer;padding:8px;font-size:12px;border-radius:4px;background-color:#ff6666;color:white;border:none'name='del_button'>CANCEL</button>
+                                    <button style='cursor:pointer;padding:8px;font-size:12px;border-radius:4px;background-color:#ff6666;color:white;border:none
+                                    'name='del_button' value='<?php echo $row["id"] ?>'>CANCEL</button>
                                 </form>
                             </td>
                         </tr>
                 <?php
                         }
                     }
+
                 else {
                     //if user has no reservation yet
                     echo '<script type="text/javascript">swal("AWW", "You have no reservations yet!", "warning");</script>';
                     }
                 }
+
+                
+                    if(isset($_GET['del_button'])) {
+                        cancelReservation($_GET['del_button']);
+                    } 
+                    
+                    function cancelReservation($qId) {
+                            $conn = new mysqli('localhost', 'root', '', 'bookingcalendar');
+
+                            if ($conn->connect_error) {
+                                die("Connection failed: " . $conn->connect_error);
+                            }
+
+                            $q_params = "DELETE FROM bookings WHERE id=$qId";
+                            
+                            if($conn->query($q_params) === TRUE) {
+                                echo '<script type="text/javascript">if(!swal("Success!", "Record Successfully Deleted!", "success"));{
+                                    window.location.href("admin.php") 
+                                }</script>';
+                            } else {
+                                echo "Error deleting record: " . $conn->error;
+                            }
+                        }
+
                 ?>
                 </tbody>
             </table>

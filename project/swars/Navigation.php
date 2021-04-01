@@ -182,8 +182,9 @@
                                                                 <select type="text" id="people" placeholder="People" name="people" class="form-control">
 
                                                             <?php 
+                                                                session_start();
                                                                 $db = mysqli_connect('localhost', 'root', '', 'registration');
-                                                                $res_username =$_SESSION['username']; ;
+                                                                $res_username =$_SESSION['username'];
                                                                 $memberhsip_query = "SELECT membership FROM users WHERE username='$res_username'";
                                                                 $result = mysqli_query($db, $memberhsip_query);
                                                                 $member = mysqli_fetch_assoc($result);
@@ -198,9 +199,7 @@
                                                                 // then automatic idisplay na sya don sa modal field
                                                                 // nakaka lusot kasi yung number of guest.
 
-                                                                if(isset($_GET['book_user'])) {
-                                                                    $_SESSION['people'] = $_GET['people'];
-                                                                }
+                                                              
                                                             ?>
                                                             </select>
                                                         </div>
@@ -221,7 +220,7 @@
                     </div>
                     <?php
                     if(isset($_POST['book_user'])) {
-                        session_start();
+                        
                         $_SESSION['sent'] = true;
                         $_SESSION['username'] = $_POST['username'];
                         $_SESSION['email'] = $_POST['email'];
